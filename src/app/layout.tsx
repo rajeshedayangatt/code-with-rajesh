@@ -6,7 +6,8 @@ import { cn } from "@/lib/utils";
 import { SiteConfig } from "../config/site";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
-import GoogleAnalytics from "@/components/GoogleAnalytics";
+// import GoogleAnalytics from "@/components/GoogleAnalytics";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,13 +31,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-p-20 scroll-smooth">
-      <GoogleAnalytics />
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_MEASUREMENT_ID ?? ""} />
       <body
         className={cn(
           `${geistSans.variable} ${geistMono.variable} min-h-screen bg-background antialiased`
         )}
       >
-        <section className="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">
+        <section className="md:mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"

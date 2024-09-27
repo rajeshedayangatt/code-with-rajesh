@@ -16,6 +16,8 @@ import rehypePrettyCode from "rehype-pretty-code";
 import { transformerCopyButton } from "@rehype-pretty/transformers";
 import type { Metadata } from "next";
 import path from "path";
+import AnalyticsEvents from "@/components/AnalyticsEvents";
+// import { event } from "@/components/GoogleAnalytics";
 
 export default async function BlogPost({
   params,
@@ -67,6 +69,7 @@ export default async function BlogPost({
 
   return (
     <MaxWidthWrapper className="prose dark:prose-invert">
+      <AnalyticsEvents title={data.title} />
       <article>
         <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
           <header className="pt-6 xl:pb-6">

@@ -3,6 +3,7 @@ import * as fs from "fs";
 import matter from "gray-matter";
 import type { Metadata } from "next";
 import path from "path";
+import BlogAnchor from "@/components/BlogAnchor";
 
 export const metadata: Metadata = {
   title: "Blogs - Programming with rajesh",
@@ -90,13 +91,11 @@ export default function Home() {
                         </div>
                       </div>
                       <div className="text-base font-medium leading-6">
-                        <a
-                          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                          aria-label='Read more: "Elevate: Global USD Accounts for Freelancers and Digital Nomads"'
-                          href={`blogpost/${blog.slug} `}
-                        >
-                          Read more →
-                        </a>
+                        <BlogAnchor
+                          textval="Read more"
+                          blog={blog}
+                          classname="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                        />
                       </div>
                     </div>
                   </div>
