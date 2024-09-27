@@ -16,9 +16,6 @@ import rehypePrettyCode from "rehype-pretty-code";
 import { transformerCopyButton } from "@rehype-pretty/transformers";
 import type { Metadata, ResolvingMetadata } from "next";
 
-const options = {
-  theme: "one-dark-pro",
-};
 export default async function BlogPost({
   params,
 }: {
@@ -157,16 +154,13 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // read route params
 
   const filePath = `content/${params.slug}.md`;
 
   const fileContent = fs.readFileSync(filePath, "utf-8");
-  const { data, content } = matter(fileContent);
+  const { data } = matter(fileContent);
 
   return {
     title: data.title,

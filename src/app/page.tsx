@@ -44,7 +44,7 @@ export default function Home() {
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           {blogs &&
             blogs.map((blog, index) => (
-              <li className="py-12">
+              <li className="py-12" key={index}>
                 <article>
                   <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                     <dl>
@@ -70,6 +70,7 @@ export default function Home() {
                             {blog.tags &&
                               blog.tags.map((tag: string) => (
                                 <a
+                                  key={tag}
                                   className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase"
                                   href="/tags/cryptocurrency"
                                 >

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { ThemeToggle } from "./ThemeToggle";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
@@ -8,7 +8,6 @@ import {
   SheetContent,
   SheetDescription,
   SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { usePathname } from "next/navigation";
@@ -26,7 +25,7 @@ const Navbar = () => {
     setTimeout(() => {
       setProgress(100);
     }, 200);
-  }, [pathname]);
+  }, [pathname, progress]);
   useEffect(() => {
     setProgress(0);
   }, []);

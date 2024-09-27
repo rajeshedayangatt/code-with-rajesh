@@ -107,7 +107,7 @@ export function Footer() {
           <div>© 2024</div>
           <div>•</div>
           <a className="break-words" href="/">
-            Rajesh E's Blog
+            Rajesh E&apos;s Blog
           </a>
         </div>
       </div>

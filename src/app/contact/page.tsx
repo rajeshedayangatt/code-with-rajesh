@@ -80,8 +80,8 @@ const Contact = () => {
           </div>
           <Button>Send Message</Button>
           <p className="text-xs text-gray-500 mt-3">
-            Your privacy is important to us. We won't share your details with
-            anyone.
+            Your privacy is important to us. We won&apos;t share your details
+            with anyone.
           </p>
         </div>
       </div>
