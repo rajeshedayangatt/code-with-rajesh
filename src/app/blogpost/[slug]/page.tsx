@@ -14,7 +14,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import rehypePrettyCode from "rehype-pretty-code";
 import { transformerCopyButton } from "@rehype-pretty/transformers";
-import type { Metadata, ResolvingMetadata } from "next";
+import type { Metadata } from "next";
 
 export default async function BlogPost({
   params,
