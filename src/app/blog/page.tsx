@@ -1,5 +1,4 @@
 import React from "react";
-import { buttonVariants } from "@/components/ui/button";
 import * as fs from "fs";
 import matter from "gray-matter";
 import type { Metadata } from "next";
@@ -26,12 +25,6 @@ const blogs = dirContent.map((file) => {
   const { data } = matter(content);
   return data as Blog;
 });
-
-console.log(blogs);
-
-interface BlogListProps {
-  blogs: Blog[];
-}
 
 const BlogList = () => {
   return (
@@ -74,7 +67,7 @@ const BlogList = () => {
             <ul>
               {blogs &&
                 blogs.map((blog, index) => (
-                  <li className="py-5">
+                  <li className="py-5" key={index}>
                     <article className="flex flex-col space-y-2 xl:space-y-0">
                       <dl>
                         <dt className="sr-only">Published on</dt>

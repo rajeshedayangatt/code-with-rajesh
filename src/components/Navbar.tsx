@@ -1,8 +1,6 @@
 "use client";
-import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 
-import { buttonVariants } from "@/components/ui/button";
 import { ThemeToggle } from "./ThemeToggle";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import {
@@ -13,11 +11,9 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import LoadingBar from "react-top-loading-bar";
 import { usePathname } from "next/navigation";
 
 const Navbar = () => {
-  const ref = useRef(null);
   const pathname = usePathname();
   const [progress, setProgress] = useState(0);
 

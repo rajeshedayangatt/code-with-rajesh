@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function About() {
   return (
     <main className="mb-auto">
@@ -101,11 +99,11 @@ export default function About() {
           </div>
           <div className="prose dark:prose-invert max-w-none pb-8 pt-8 xl:col-span-2">
             <p>
-              Hey there! I'm Rajesh, a seasoned full stack developer with over 8
-              years of experience specializing in Web application development
-              with PHP, React.js and Three.js. I'm passionate about creating
-              captivating 3D websites and full-stack applications that push the
-              boundaries of online experiences.
+              Hey there! I&apos;m Rajesh, a seasoned full stack developer with
+              over 8 years of experience specializing in Web application
+              development with PHP, React.js and Three.js. I&apos;m passionate
+              about creating captivating 3D websites and full-stack applications
+              that push the boundaries of online experiences.
             </p>
             <p>
               I thrive on blending creativity with technical prowess to
@@ -114,7 +112,7 @@ export default function About() {
             </p>
             <p>
               My goal is to help businesses and clients elevate their online
-              presence through innovative, immersive web experiences. Let's
+              presence through innovative, immersive web experiences. Let&apos;s
               connect and explore how I can bring your digital vision to life!
             </p>
           </div>

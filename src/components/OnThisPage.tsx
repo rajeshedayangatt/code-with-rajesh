@@ -39,7 +39,7 @@ const OnThisPage = ({
         </h2>
 
         {links?.map((link) => (
-          <div>
+          <div key={link.id}>
             <a
               href={`#${link.id}`}
               className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"

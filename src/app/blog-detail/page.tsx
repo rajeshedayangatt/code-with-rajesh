@@ -43,7 +43,7 @@ export default function Page() {
                 manage your international earnings? Elevate offers a solution
                 tailored just for you!
               </p>
-              <p>Here's how to get started with Elevate:</p>
+              <p>Here&apos;s how to get started with Elevate:</p>
               <ol>
                 <li>
                   <p>
