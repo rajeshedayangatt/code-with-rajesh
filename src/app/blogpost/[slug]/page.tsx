@@ -15,6 +15,7 @@ import rehypeSlug from "rehype-slug";
 import rehypePrettyCode from "rehype-pretty-code";
 import { transformerCopyButton } from "@rehype-pretty/transformers";
 import type { Metadata } from "next";
+import path from "path";
 
 export default async function BlogPost({
   params,
@@ -55,7 +56,9 @@ export default async function BlogPost({
   // And finally, process the input
   //.processSync("# test");
 
-  const filePath = `content/${params.slug}.md`;
+  const filePath = path.join(process.cwd(), "content", params.slug + ".md");
+
+  // const filePath = `content/${params.slug}.md`;
 
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(fileContent);

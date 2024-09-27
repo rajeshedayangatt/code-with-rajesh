@@ -45,24 +45,24 @@ const Navbar = () => {
                 <linearGradient id="SvgjsLinearGradient1231">
                   <stop
                     id="SvgjsStop1232"
-                    stop-color="#00ff8f"
+                    stopColor="#00ff8f"
                     offset="0"
                   ></stop>
                   <stop
                     id="SvgjsStop1233"
-                    stop-color="#00a1ff"
+                    stopColor="#00a1ff"
                     offset="1"
                   ></stop>
                 </linearGradient>
                 <linearGradient id="SvgjsLinearGradient1234">
                   <stop
                     id="SvgjsStop1235"
-                    stop-color="#00ff8f"
+                    stopColor="#00ff8f"
                     offset="0"
                   ></stop>
                   <stop
                     id="SvgjsStop1236"
-                    stop-color="#00a1ff"
+                    stopColor="#00a1ff"
                     offset="1"
                   ></stop>
                 </linearGradient>

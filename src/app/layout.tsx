@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Footer } from "./ui/Footer";
 import { cn } from "@/lib/utils";
-import { SiteConfig } from "../../config/site";
+import { SiteConfig } from "../config/site";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 

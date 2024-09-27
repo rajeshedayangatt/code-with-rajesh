@@ -2,6 +2,7 @@ import React from "react";
 import * as fs from "fs";
 import matter from "gray-matter";
 import type { Metadata } from "next";
+import path from "path";
 
 export const metadata: Metadata = {
   title: "Blogs - Programming with rajesh",
@@ -21,7 +22,12 @@ interface Blog {
 const dirContent = fs.readdirSync("content", "utf-8");
 
 const blogs = dirContent.map((file) => {
-  const content = fs.readFileSync(`content/${file}`, "utf-8");
+  const postsDirectory = path.join(process.cwd(), "content", file);
+
+  const content = fs.readFileSync(postsDirectory, "utf-8");
+
+  console.log(content);
+
   const { data } = matter(content);
   return data as Blog;
 });
