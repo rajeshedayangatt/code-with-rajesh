@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { SiteConfig } from "../config/site";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,6 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-p-20 scroll-smooth">
+      <GoogleAnalytics />
       <body
         className={cn(
           `${geistSans.variable} ${geistMono.variable} min-h-screen bg-background antialiased`
