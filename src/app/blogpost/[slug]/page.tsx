@@ -69,7 +69,7 @@ export default async function BlogPost({
 
   return (
     <MaxWidthWrapper className="prose dark:prose-invert">
-      <AnalyticsEvents title={data.title} />
+      <AnalyticsEvents title={data.title as string} />
       <article>
         <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
           <header className="pt-6 xl:pb-6">

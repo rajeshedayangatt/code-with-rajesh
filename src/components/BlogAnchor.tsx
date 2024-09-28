@@ -4,12 +4,17 @@ import React from "react";
 import { sendGAEvent } from "@next/third-parties/google";
 import { useRouter } from "next/navigation";
 
+interface BlogT {
+  title: string;
+  slug: string;
+}
+
 const BlogAnchor = ({
   blog,
   classname,
   textval,
 }: {
-  blog: any;
+  blog: BlogT;
   classname: string;
   textval: String;
 }) => {
