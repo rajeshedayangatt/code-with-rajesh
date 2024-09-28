@@ -1,3 +1,10 @@
+import type { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "About CodeWithRajesh | Web Development Tutorials by Rajesh",
+  description:
+    "Discover the journey behind CodeWithRajesh. Learn how Rajesh, a seasoned web developer, shares his expertise in React, Node.js, Next.js, and Tailwind, helping developers enhance their skills with clear, practical tutorials.",
+};
+
 export default function About() {
   return (
     <main className="mb-auto">

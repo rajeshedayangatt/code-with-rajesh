@@ -1,7 +1,7 @@
 ---
 slug: "getting-started-with-nodejs"
 title: "Getting Started with Node.js: A Beginner's Guide"
-description: "Learn how to install Node.js, set up your environment, and build your first 'Hello World' application in this beginner's guide."
+description: "Learn how to install Node.js, set up your development environment, and build your first 'Hello World' application in this comprehensive beginner's guide to Node.js"
 image: "/images/nodejs-beginners-guide.png"
 url: "/blog/getting-started-with-nodejs"
 tags: ["Node.js", "JavaScript"]

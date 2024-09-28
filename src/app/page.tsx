@@ -6,8 +6,9 @@ import path from "path";
 import BlogAnchor from "@/components/BlogAnchor";
 
 export const metadata: Metadata = {
-  title: "Blogs - Programming with rajesh",
-  description: "test",
+  title: "Home - Code with rajesh",
+  description:
+    "Learn React, Node.js, Next.js, and Tailwind with hands-on tutorials at CodeWithRajesh. Master full-stack development through comprehensive guides, code examples, and best practices.",
 };
 
 interface Blog {
