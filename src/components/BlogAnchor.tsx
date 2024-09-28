@@ -16,7 +16,7 @@ const BlogAnchor = ({
 }: {
   blog: BlogT;
   classname: string;
-  textval: String;
+  textval: string;
 }) => {
   const router = useRouter();
 
