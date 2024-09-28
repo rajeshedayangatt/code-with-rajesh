@@ -27,7 +27,7 @@ const blogs = dirContent.map((file) => {
 
   const content = fs.readFileSync(postsDirectory, "utf-8");
 
-  console.log(content);
+  // console.log(content);
 
   const { data } = matter(content);
   return data as Blog;
