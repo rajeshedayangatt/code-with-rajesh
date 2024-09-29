@@ -10,11 +10,11 @@ time: " September 27, 2024"
 
 ### Introduction
 
-Node.js is a free, open-source, and cross-platform JavaScript runtime environment that allows developers to run JavaScript code outside the browser, typically on a server. It enables you to build fast, scalable web applications, real-time services like chat apps, and tools that can handle a large number of simultaneous requests efficiently. Node.js uses an event-driven, non-blocking I/O model, which makes it lightweight and efficient, perfect for data-intensive applications that need to run in real-time. It also comes with npm (Node Package Manager), which provides access to thousands of libraries, making development easier and faster.
+Node.js is a free, open-source, and cross-platform JavaScript runtime environment that allows developers to run JavaScript code outside the browser, typically on a server. It enables you to build fast, scalable web applications, real-time services like chat apps, and tools that handle a large number of simultaneous requests efficiently. Node.js uses an event-driven, non-blocking I/O model, which makes it lightweight and efficient — perfect for data-intensive applications that need to run in real-time. It also comes with npm (Node Package Manager), providing access to thousands of libraries, making development easier and faster.
 
 ### Prerequisites
 
-To start with Node.js, you need to know basic JavaScript, including how functions, loops, and variables work. Since Node.js handles tasks asynchronously, understanding how things like promises and callbacks work is important. You should also be comfortable using the command line to run Node.js commands and manage files. Basic knowledge of how websites and servers interact (like HTTP and APIs) will help too. Lastly, you need to install Node.js and npm (a tool for managing packages) on your computer, which allows you to start building applications.
+To follow this beginner's guide to Node.js, you should have basic knowledge of JavaScript, including functions, loops, and variables. Since Node.js handles tasks asynchronously, it's important to understand promises and callbacks. You should also be comfortable using the command line to run Node.js commands and manage files. Finally, basic knowledge of HTTP and APIs will help as we interact with servers.
 
 ---
 

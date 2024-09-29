@@ -34,7 +34,7 @@ const blogs = dirContent.map((file) => {
   return data as Blog;
 });
 
-console.log(blogs);
+// console.log(blogs);
 
 export default function Home() {
   return (

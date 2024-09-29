@@ -22,8 +22,10 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: SiteConfig.title,
   description: SiteConfig.description,
+  verification: {
+    google: "iZXjm9uFzwoY7JQPI36eyGRRv1RZM-iOHQK_nKkwJI8",
+  },
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
