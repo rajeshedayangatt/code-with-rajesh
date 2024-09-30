@@ -9,7 +9,7 @@ import rehypeStringify from "rehype-stringify";
 import rehypeHighlight from "rehype-highlight";
 import matter from "gray-matter";
 import * as fs from "fs";
-// import OnThisPage from "@/components/OnThisPage";
+import OnThisPage from "@/components/OnThisPage";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import rehypePrettyCode from "rehype-pretty-code";
@@ -91,7 +91,7 @@ export default async function BlogPost({
             </div>
           </header>
 
-          <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 xl:grid  xl:gap-x-6 xl:divide-y-0 dark:divide-gray-700">
+          <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0 dark:divide-gray-700">
             <div className="divide-y divide-gray-200 xl:col-span-3 xl:row-span-2 xl:pb-0 dark:divide-gray-700">
               <div className="prose dark:prose-invert max-w-none pb-8 pt-10">
                 <div dangerouslySetInnerHTML={{ __html: htmlContent }}></div>
@@ -99,9 +99,9 @@ export default async function BlogPost({
               </div>
             </div>
 
-            {/* <footer className="sticky top-20">
+            <footer className="sticky top-20">
               <div className="divide-gray-200 text-sm font-medium leading-5 xl:col-start-1 xl:row-start-2 xl:divide-y dark:divide-gray-700">
-                 <div className="py-4 xl:py-8">
+                {/* <div className="py-4 xl:py-8">
                   <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
                     Tags
                   </h2>
@@ -116,34 +116,34 @@ export default async function BlogPost({
                         </a>
                       ))}
                   </div>
-                </div> 
-                <div className="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
+                </div> */}
+                <div className="flex justify-between py-4 xl:block xl:space-y-8 xl:py-20">
                   <div>
                     <OnThisPage
                       htmlContent={htmlContent}
                       className="text-sm w-[100%]"
-                    /> 
-                    <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                    />
+                    <div className="pt-4 xl:pt-8">
+                      <a
+                        className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                        aria-label="Back to the blog"
+                        href="/blog"
+                      >
+                        ← Back to the blog
+                      </a>
+                    </div>
+                    {/* <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
                       Previous Article
                     </h2>
                     <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
                       <a className="break-words" href="/blog/payoneer">
                         Payoneer: Your Gateway to Global Financial Transactions
                       </a>
-                    </div> 
+                    </div> */}
                   </div>
                 </div>
               </div>
-              <div className="pt-4 xl:pt-8">
-                <a
-                  className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                  aria-label="Back to the blog"
-                  href="/blog"
-                >
-                  ← Back to the blog
-                </a>
-              </div>
-            </footer> */}
+            </footer>
           </div>
         </div>
       </article>

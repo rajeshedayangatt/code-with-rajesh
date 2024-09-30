@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 interface LinkType {
   id: string;
   text: string;
+  tagtype: boolean;
 }
 const OnThisPage = ({
   htmlContent,
@@ -25,26 +26,37 @@ const OnThisPage = ({
     const generatedLinks: LinkType[] = [];
 
     headings.forEach((heading, index) => {
+      let tagtype = true;
+      // if (heading.tagName === "H2") {
+      //   console.log("h2");
+      // }
+
+      if (heading.tagName === "H3") {
+        tagtype = false;
+      }
       const id = heading.id || "heading-" + index;
       const text = (heading as HTMLElement).innerText;
-      generatedLinks.push({ id, text });
+
+      generatedLinks.push({ id, text, tagtype });
     });
     setLinks(generatedLinks);
   }, [htmlContent]);
   return (
     <div className={cn("hidden md:block", className)}>
-      <div className=" ">
-        <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
-          On this page
-        </h2>
+      <div className="table_content not-prose">
+        <h3 className="text-xl uppercase tracking-wide text-gray-500 dark:text-gray-400">
+          TABLE OF CONTENTS
+        </h3>
 
         {links?.map((link) => (
-          <div key={link.id}>
+          <div key={link.id} className="py-2">
             <a
               href={`#${link.id}`}
-              className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+              className={`hover:text-primary-600  dark:hover:text-[hsl(210deg 25% 96%)] no-underline text-[hsl(210deg 9% 40%)] ${
+                link.tagtype ? "" : "pl-4 text-[12px]"
+              }`}
             >
-              {link.text.slice(0, 50)}
+              {link.text.slice(0, 30)}
             </a>
           </div>
         ))}
