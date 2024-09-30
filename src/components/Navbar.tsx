@@ -112,12 +112,12 @@ const Navbar = () => {
           >
             Blog
           </a>
-          {/* <a
+          <a
             className="hover:text-primary-500 dark:hover:text-primary-400 block font-medium text-gray-900 dark:text-gray-100"
-            href="/tags"
+            href="/contact"
           >
-            Tags
-          </a> */}
+            Contact
+          </a>
           <a
             className="hover:text-primary-500 dark:hover:text-primary-400 block font-medium text-gray-900 dark:text-gray-100"
             href="/about"

@@ -18,6 +18,7 @@ interface Blog {
   description: string;
   url: string;
   time: string;
+  tags: string[];
 }
 
 const dirContent = fs.readdirSync("content", "utf-8");
@@ -95,24 +96,16 @@ const BlogList = () => {
                             </a>
                           </h2>
                           <div className="flex flex-wrap">
-                            <a
-                              className="mr-3 text-sm font-medium uppercase text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                              href="/tags/finance"
-                            >
-                              finance
-                            </a>
-                            <a
-                              className="mr-3 text-sm font-medium uppercase text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                              href="/tags/freelancing"
-                            >
-                              freelancing
-                            </a>
-                            <a
-                              className="mr-3 text-sm font-medium uppercase text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                              href="/tags/remote-work"
-                            >
-                              remote-work
-                            </a>
+                            {blog.tags &&
+                              blog.tags.map((tag: string) => (
+                                <a
+                                  key={tag}
+                                  className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase"
+                                  href="#"
+                                >
+                                  {tag}
+                                </a>
+                              ))}
                           </div>
                         </div>
                         <div className="prose max-w-none text-gray-500 dark:text-gray-400">

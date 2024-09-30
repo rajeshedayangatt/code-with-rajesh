@@ -24,7 +24,7 @@ export function Footer() {
             className="text-sm text-gray-500 transition hover:text-gray-600"
             target="_blank"
             rel="noopener noreferrer"
-            href="https://github.com/rajeshedayangatt"
+            href="https://github.com/codewithrajesheda"
           >
             <span className="sr-only">github</span>
             <svg

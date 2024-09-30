@@ -17,6 +17,7 @@ import { transformerCopyButton } from "@rehype-pretty/transformers";
 import type { Metadata } from "next";
 import path from "path";
 import AnalyticsEvents from "@/components/AnalyticsEvents";
+import AccordianDemo from "@/components/AccordianDemo";
 // import { event } from "@/components/GoogleAnalytics";
 
 export default async function BlogPost({
@@ -58,7 +59,7 @@ export default async function BlogPost({
   // And finally, process the input
   //.processSync("# test");
 
-  const filePath = path.join(process.cwd(), "content", params.slug + ".md");
+  const filePath = path.join(process.cwd(), "content", params.slug + ".mdx");
 
   // const filePath = `content/${params.slug}.md`;
 
@@ -94,6 +95,7 @@ export default async function BlogPost({
             <div className="divide-y divide-gray-200 xl:col-span-3 xl:row-span-2 xl:pb-0 dark:divide-gray-700">
               <div className="prose dark:prose-invert max-w-none pb-8 pt-10">
                 <div dangerouslySetInnerHTML={{ __html: htmlContent }}></div>
+                <AccordianDemo faq={data.faq} />
               </div>
             </div>
 
@@ -163,7 +165,7 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // read route params
 
-  const filePath = `content/${params.slug}.md`;
+  const filePath = `content/${params.slug}.mdx`;
 
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data } = matter(fileContent);
