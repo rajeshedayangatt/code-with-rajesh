@@ -36,6 +36,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-p-20 scroll-smooth">
+      <meta
+        name="google-adsense-account"
+        content="ca-pub-4302683929131089"
+      ></meta>
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_MEASUREMENT_ID ?? ""} />
       <GoogleAdsense pId={process.env.NEXT_PUBLIC_ADDSENSE_ID ?? ""} />
       <Analytics />
