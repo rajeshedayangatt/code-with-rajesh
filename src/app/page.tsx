@@ -15,6 +15,7 @@ interface Blog {
   content: string;
   image: string;
   description: string;
+  blogintro: string;
   url: string;
   tags: string[];
   time: string;
@@ -91,8 +92,7 @@ export default function Home() {
                           </div>
                         </div>
                         <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                          Discover how Elevate provides global USD accounts for
-                          freelancers and remote workers worldwide
+                          {blog.blogintro}
                         </div>
                       </div>
                       <div className="text-base font-medium leading-6">

@@ -13,6 +13,7 @@ interface Blog {
   title: string;
   content: string;
   image: string;
+  blogintro: string;
   description: string;
   url: string;
   time: string;
@@ -107,7 +108,7 @@ const BlogList = () => {
                           </div>
                         </div>
                         <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                          {blog.description}
+                          {blog.blogintro}
                         </div>
                       </div>
                     </article>
