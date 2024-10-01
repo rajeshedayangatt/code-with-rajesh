@@ -175,5 +175,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: data.title,
     description: data.description,
+    keywords: data.keywords,
+    alternates: {
+      canonical: process.env.NEXT_PUBLIC_URL + "/blogpost/" + params.slug,
+    },
+    openGraph: {
+      type: "article",
+      title: data.title,
+      description: data.description,
+      url: process.env.NEXT_PUBLIC_URL + "/blogpost/" + params.slug,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: data.title,
+      description: data.description,
+    },
+    robots: {
+      index: true, // Set to false if you don't want search engines to index the page
+      follow: true, // Allows search engines to follow links on the page
+      "max-snippet": -1, // No limit on the number of characters in the snippet
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
   };
 }

@@ -4,12 +4,9 @@ import matter from "gray-matter";
 import type { Metadata } from "next";
 import path from "path";
 import Link from "next/link";
+import { commonPageMetadata } from "@/config/site";
 
-export const metadata: Metadata = {
-  title: "CodeWithRajesh Blog | React, Node.js, Next.js, and Tailwind Articles",
-  description:
-    "Browse the latest tutorials and articles on React, Node.js, Next.js, and Tailwind. Stay updated with practical guides, coding tips, and full-stack development resources at CodeWithRajesh.",
-};
+export const metadata: Metadata = commonPageMetadata;
 
 interface Blog {
   slug: string;

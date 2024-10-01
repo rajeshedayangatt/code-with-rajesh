@@ -5,12 +5,9 @@ import type { Metadata } from "next";
 import path from "path";
 import BlogAnchor from "@/components/BlogAnchor";
 import Link from "next/link";
+import { commonPageMetadata } from "@/config/site";
 
-export const metadata: Metadata = {
-  title: "Home - Code with rajesh",
-  description:
-    "Learn React, Node.js, Next.js, and Tailwind with hands-on tutorials at CodeWithRajesh. Master full-stack development through comprehensive guides, code examples, and best practices.",
-};
+export const metadata: Metadata = commonPageMetadata;
 
 interface Blog {
   slug: string;
