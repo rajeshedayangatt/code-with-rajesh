@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import type { Metadata } from "next";
 import path from "path";
 import BlogAnchor from "@/components/BlogAnchor";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Home - Code with rajesh",
@@ -66,12 +67,18 @@ export default function Home() {
                       <div className="space-y-6">
                         <div>
                           <h2 className="text-2xl font-bold leading-8 tracking-tight">
-                            <a
+                            <Link
+                              href={`blogpost/${blog.slug} `}
+                              className="text-gray-900 dark:text-gray-100"
+                            >
+                              {blog.title}
+                            </Link>
+                            {/* <a
                               className="text-gray-900 dark:text-gray-100"
                               href={`blogpost/${blog.slug} `}
                             >
                               {blog.title}
-                            </a>
+                            </a> */}
                           </h2>
                           <div className="flex flex-wrap">
                             {blog.tags &&
@@ -106,13 +113,12 @@ export default function Home() {
         </ul>
       </div>
       <div className="flex justify-end text-base font-medium leading-6">
-        <a
-          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-          aria-label="All posts"
+        <Link
           href="/blog"
+          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
         >
           All Posts →
-        </a>
+        </Link>
       </div>
     </main>
   );

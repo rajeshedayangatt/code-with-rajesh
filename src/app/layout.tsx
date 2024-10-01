@@ -8,6 +8,8 @@ import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 // import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -34,6 +36,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-p-20 scroll-smooth">
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_MEASUREMENT_ID ?? ""} />
+      <Analytics />
+      <SpeedInsights />
       <body
         className={cn(
           `${geistSans.variable} ${geistMono.variable} min-h-screen bg-background antialiased`

@@ -18,6 +18,7 @@ import type { Metadata } from "next";
 import path from "path";
 import AnalyticsEvents from "@/components/AnalyticsEvents";
 import AccordianDemo from "@/components/AccordianDemo";
+import Link from "next/link";
 // import { event } from "@/components/GoogleAnalytics";
 
 export default async function BlogPost({
@@ -124,13 +125,14 @@ export default async function BlogPost({
                       className="text-sm w-[100%]"
                     />
                     <div className="pt-4 xl:pt-8">
-                      <a
+                      <Link
                         className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                         aria-label="Back to the blog"
                         href="/blog"
                       >
+                        {" "}
                         ← Back to the blog
-                      </a>
+                      </Link>
                     </div>
                     {/* <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
                       Previous Article

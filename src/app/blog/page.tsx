@@ -3,6 +3,7 @@ import * as fs from "fs";
 import matter from "gray-matter";
 import type { Metadata } from "next";
 import path from "path";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "CodeWithRajesh Blog | React, Node.js, Next.js, and Tailwind Articles",
@@ -88,12 +89,12 @@ const BlogList = () => {
                       <div className="space-y-3">
                         <div>
                           <h2 className="text-2xl font-bold leading-8 tracking-tight">
-                            <a
+                            <Link
                               className="text-gray-900 dark:text-gray-100"
                               href={`blogpost/${blog.slug} `}
                             >
                               {blog.title}
-                            </a>
+                            </Link>
                           </h2>
                           <div className="flex flex-wrap">
                             {blog.tags &&

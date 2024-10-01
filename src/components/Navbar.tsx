@@ -11,6 +11,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -32,7 +33,7 @@ const Navbar = () => {
 
   return (
     <header className="flex w-full items-center justify-between bg-white py-10 dark:bg-gray-950 sticky top-0 backdrop-blur z-10">
-      <a className="break-words" aria-label="Abdul Rauf's Blog" href="/">
+      <Link className="break-words" aria-label="Abdul Rauf's Blog" href="/">
         <div className="flex items-center justify-between">
           <div className="mr-3">
             <svg
@@ -103,27 +104,29 @@ const Navbar = () => {
             Code with Rajesh
           </div> */}
         </div>
-      </a>
+      </Link>
+
       <div className="flex items-center space-x-4 leading-5 sm:space-x-6">
         <div className="no-scrollbar hidden max-w-40 items-center space-x-4 overflow-x-auto sm:flex sm:space-x-6 md:max-w-72 lg:max-w-96">
-          <a
+          <Link
             className="hover:text-primary-500 dark:hover:text-primary-400 block font-medium text-gray-900 dark:text-gray-100"
             href="/blog"
           >
             Blog
-          </a>
-          <a
+          </Link>
+
+          <Link
             className="hover:text-primary-500 dark:hover:text-primary-400 block font-medium text-gray-900 dark:text-gray-100"
             href="/contact"
           >
             Contact
-          </a>
-          <a
+          </Link>
+          <Link
             className="hover:text-primary-500 dark:hover:text-primary-400 block font-medium text-gray-900 dark:text-gray-100"
             href="/about"
           >
             About
-          </a>
+          </Link>
         </div>
         {/* <button aria-label="Search">
           <svg
