@@ -18,6 +18,7 @@ import type { Metadata } from "next";
 import path from "path";
 import AnalyticsEvents from "@/components/AnalyticsEvents";
 import AccordianDemo from "@/components/AccordianDemo";
+import { redirect } from "next/navigation";
 
 // import { event } from "@/components/GoogleAnalytics";
 
@@ -64,56 +65,64 @@ export default async function BlogPost({
 
   // const filePath = `content/${params.slug}.md`;
 
-  const fileContent = fs.readFileSync(filePath, "utf-8");
-  const { data, content } = matter(fileContent);
+  if (fs.existsSync(filePath)) {
+    const fileContent = fs.readFileSync(filePath, "utf-8");
 
-  const htmlContent = (await processor.process(content)).toString();
+    const { data, content } = matter(fileContent);
 
-  return (
-    <MaxWidthWrapper className="prose dark:prose-invert">
-      <AnalyticsEvents title={data.title as string} />
-      <article>
-        <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
-          <header className="pt-6 xl:pb-6">
-            <div className="space-y-1 text-center">
-              <dl className="space-y-10">
+    const htmlContent = (await processor.process(content)).toString();
+    return (
+      <MaxWidthWrapper className="prose dark:prose-invert">
+        <AnalyticsEvents title={data.title as string} />
+        <article>
+          <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
+            <header className="pt-6 xl:pb-6">
+              <div className="space-y-1 text-center">
+                <dl className="space-y-10">
+                  <div>
+                    <dt className="sr-only">Published on</dt>
+                    <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                      <time dateTime="2024-09-01T00:00:00.000Z">
+                        {data.time}
+                      </time>
+                    </dd>
+                  </div>
+                </dl>
                 <div>
-                  <dt className="sr-only">Published on</dt>
-                  <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                    <time dateTime="2024-09-01T00:00:00.000Z">{data.time}</time>
-                  </dd>
+                  <h1 className="md:leading-14 text-3xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-5xl dark:text-gray-100">
+                    {data.title}
+                  </h1>
                 </div>
-              </dl>
-              <div>
-                <h1 className="md:leading-14 text-3xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-5xl dark:text-gray-100">
-                  {data.title}
-                </h1>
               </div>
-            </div>
-          </header>
+            </header>
 
-          <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8  dark:divide-gray-700">
-            <div className="divide-y divide-gray-200 xl:col-span-3 xl:row-span-2 xl:pb-0 dark:divide-gray-700">
-              <div className="prose dark:prose-invert max-w-none pb-8 pt-10">
-                <OnThisPage
-                  htmlContent={htmlContent}
-                  className="text-sm w-[100%]"
-                />
-                <div dangerouslySetInnerHTML={{ __html: htmlContent }}></div>
-                <AccordianDemo faq={data.faq} />
+            <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8  dark:divide-gray-700">
+              <div className="divide-y divide-gray-200 xl:col-span-3 xl:row-span-2 xl:pb-0 dark:divide-gray-700">
+                <div className="prose dark:prose-invert max-w-none pb-8 pt-10">
+                  <OnThisPage
+                    htmlContent={htmlContent}
+                    className="text-sm w-[100%]"
+                  />
+                  <div dangerouslySetInnerHTML={{ __html: htmlContent }}></div>
+                  <AccordianDemo faq={data.faq} />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </article>
-      {/* <div className=" flex">
+        </article>
+        {/* <div className=" flex">
         <div className="px-16">
           <div dangerouslySetInnerHTML={{ __html: htmlContent }}></div>
         </div>
         <OnThisPage htmlContent={htmlContent} className="text-sm w-[50%]" />
       </div> */}
-    </MaxWidthWrapper>
-  );
+      </MaxWidthWrapper>
+    );
+  } else {
+    redirect(`/blog`);
+  }
+
+  // // Navigate to the new post page
 }
 
 type Props = {
@@ -126,35 +135,41 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const filePath = `content/${params.slug}.mdx`;
 
-  const fileContent = fs.readFileSync(filePath, "utf-8");
-  const { data } = matter(fileContent);
+  if (fs.existsSync(filePath)) {
+    const fileContent = fs.readFileSync(filePath, "utf-8");
+    const { data } = matter(fileContent);
+
+    return {
+      title: data.title,
+      description: data.description,
+      keywords: data.keywords,
+      alternates: {
+        canonical: process.env.NEXT_PUBLIC_URL + "/blogpost/" + params.slug,
+      },
+      openGraph: {
+        type: "article",
+        title: data.title,
+        description: data.description,
+        url: process.env.NEXT_PUBLIC_URL + "/blogpost/" + params.slug,
+        images: [process.env.NEXT_PUBLIC_URL + data.image],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: data.title,
+        description: data.description,
+        images: [process.env.NEXT_PUBLIC_URL + data.image],
+      },
+      robots: {
+        index: true, // Set to false if you don't want search engines to index the page
+        follow: true, // Allows search engines to follow links on the page
+        "max-snippet": -1, // No limit on the number of characters in the snippet
+        "max-image-preview": "large",
+        "max-video-preview": -1,
+      },
+    };
+  }
 
   return {
-    title: data.title,
-    description: data.description,
-    keywords: data.keywords,
-    alternates: {
-      canonical: process.env.NEXT_PUBLIC_URL + "/blogpost/" + params.slug,
-    },
-    openGraph: {
-      type: "article",
-      title: data.title,
-      description: data.description,
-      url: process.env.NEXT_PUBLIC_URL + "/blogpost/" + params.slug,
-      images: [process.env.NEXT_PUBLIC_URL + data.image],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: data.title,
-      description: data.description,
-      images: [process.env.NEXT_PUBLIC_URL + data.image],
-    },
-    robots: {
-      index: true, // Set to false if you don't want search engines to index the page
-      follow: true, // Allows search engines to follow links on the page
-      "max-snippet": -1, // No limit on the number of characters in the snippet
-      "max-image-preview": "large",
-      "max-video-preview": -1,
-    },
+    title: "Page Not Found",
   };
 }
