@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 export const metadata: Metadata = {
   title: "About CodeWithRajesh | Web Development Tutorials by Rajesh",
   description:
@@ -16,7 +17,7 @@ export default function About() {
         </div>
         <div className="items-start space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
           <div className="flex flex-col items-center space-x-2 pt-8">
-            <img
+            <Image
               alt="avatar"
               loading="lazy"
               width="192"

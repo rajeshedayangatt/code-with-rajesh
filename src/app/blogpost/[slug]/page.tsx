@@ -18,7 +18,7 @@ import type { Metadata } from "next";
 import path from "path";
 import AnalyticsEvents from "@/components/AnalyticsEvents";
 import AccordianDemo from "@/components/AccordianDemo";
-import Link from "next/link";
+
 // import { event } from "@/components/GoogleAnalytics";
 
 export default async function BlogPost({
