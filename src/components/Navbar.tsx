@@ -32,7 +32,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className="flex w-full items-center justify-between bg-white py-10 dark:bg-gray-950 sticky top-0 backdrop-blur z-10">
+    <header className="flex w-full items-center justify-between bg-white py-5 dark:bg-gray-950 sticky top-0 backdrop-blur z-10">
       <Link className="break-words" aria-label="Abdul Rauf's Blog" href="/">
         <div className="flex items-center justify-between">
           <div className="mr-3">
