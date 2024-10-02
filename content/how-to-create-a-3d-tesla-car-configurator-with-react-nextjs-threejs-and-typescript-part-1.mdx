@@ -2,7 +2,7 @@
 slug: "how-to-create-a-3d-tesla-car-configurator-with-react-nextjs-threejs-and-typescript-part-1"
 title: "How to Create a 3D Tesla Car Configurator with React, Next.js, Three.js and TypeScript - Part 1"
 description: "Discover how to create a 3D Tesla car configurator using React, Next.js and TypeScript. Learn step-by-step with Three.js and take your web development to the next level."
-image: "/images/nodejs-beginners-guide.png"
+image: "/images/Screenshot 2024-10-01 174323.png"
 url: "/blog/creating-3d"
 tags: ["Next.js", "Three Js", "React Js", "JavaScript"]
 keywords: "3D car configurator, Tesla car customization, React Three Fiber, Next.js TypeScript tutorial, Three.js car model, JavaScript 3D development, web development with Three.js, interactive 3D web app, car configurator tutorial"
@@ -38,7 +38,7 @@ faq:
   alt="3D Tesla car configurator example with React and Next.js Screenshot"
 />
 
-## Introduction to Building a Tesla 3D Car Configurator with React and Next.js
+## Introduction
 
 As a developer, have you ever dreamt of creating interactive 3D experiences that captivate and engage users? If you're looking to build a 3D Tesla car configurator with Next.js and React Three Fiber, you’re in for an exciting journey! These powerful technologies empower developers to build dynamic web applications that not only showcase stunning 3D graphics but also offer interactive customization options.
 
@@ -64,7 +64,7 @@ Before we start, ensure you have the following:
 - Node.js installed on your machine.
 - A code editor (e.g., VSCode).
 
-## Step-by-Step Guide to Setting Up Next.js for 3D Development
+## Setting Up Next.js for 3D Development
 
 First, let's create a new Next.js application.
 
@@ -86,7 +86,7 @@ During the setup process, you’ll be asked a few questions like:
 
 Simply refer to the image above for guidance on how to answer each question.This process will create a new project <blockquote >3d-configurator</blockquote >
 
-## How to install React Three Fiber npm package
+## install React Three Fiber npm package
 
 ```bash
 npm install @react-three/fiber @react-three/drei three
@@ -126,7 +126,7 @@ boilerplate code.
 
 - Compatibility with React Ecosystem: Since it is built on React, you can use hooks, context, and other React features to enhance your 3D applications.
 
-## How to Create a Car Component for 3D Tesla Car Configurator in React Three Fiber
+## Create a Car Component
 
 You can download the 3d car model i have used from the git repository and save it in the public folder of your project (Create a public folder in the next js root directory). You can load the model using the useLoader hook provided by React Three Fiber.
 
@@ -167,7 +167,7 @@ In this snippets we are using react three fiber drei <b><a target="_blank" href=
 - The rotation property is an array that specifies the rotation of the model in radians. In this case, it rotates the model around the Y-axis by Math.PI / 5 radians (approximately 36 degrees).
 - The castShadow and receiveShadow props enable shadow casting and receiving, respectively, enhancing the visual realism of the scene.
 
-## How to Create a Ground Component for 3D Tesla Car Configurator in React Three Fiber
+## Create a Ground Component
 
 Create Ground.tsx file inside `src/app/components` folder and paste the below code. You need to download ground texture maps from the repository and place it in the `public/texture` folder
 
@@ -240,7 +240,7 @@ export function Ground() {
   of React Three Fiber and Three.js, you can easily add detailed environments to
   your 3D applications.
 
-## How to Build a CanvasRender Component for Rendering 3D Scenes in React Three Fiber
+## Build a CanvasRender Component
 
 Create CanvasRender.tsx file inside `src/app/components` folder and paste the below code.Add the Ground and Car component to the CanvasRender component.
 
@@ -309,7 +309,7 @@ export default CanvasRender;
 
 - Since the textures and models are loaded asynchronously, it’s essential to use react `Suspense` component to manage the loading state.
 
-## Integrating the CanvasRender Component into the 3D Tesla Configurator Project
+## Adding the CanvasRender Component
 
 Add CanvasRender.tsx file to `src/app/page.tsx`
 
@@ -327,7 +327,7 @@ export default function Home() {
 
 Finally we add CanvasRender `component` to `page` render 3d car environment in next js.
 
-## Start the development server by entering following commands:
+Start the development server by entering following commands:
 
 ```bash
 npm run dev

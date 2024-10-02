@@ -21,7 +21,7 @@ const OnThisPage = ({
     const temp = document.createElement("div");
     temp.innerHTML = htmlContent;
 
-    const headings = temp.querySelectorAll("h2, h3");
+    const headings = temp.querySelectorAll("h2");
 
     const generatedLinks: LinkType[] = [];
 
@@ -42,21 +42,21 @@ const OnThisPage = ({
     setLinks(generatedLinks);
   }, [htmlContent]);
   return (
-    <div className={cn("hidden md:block", className)}>
+    <div className={cn("md:block", className)}>
       <div className="table_content not-prose">
-        <h3 className="text-xl uppercase tracking-wide text-gray-500 dark:text-gray-400">
+        <h3 className="text-sm uppercase tracking-wide text-gray-500 dark:text-gray-400">
           TABLE OF CONTENTS
         </h3>
 
         {links?.map((link) => (
-          <div key={link.id} className="py-2">
+          <div key={link.id} className="py-2 px-3">
             <a
               href={`#${link.id}`}
               className={`hover:text-primary-600  dark:hover:text-[hsl(210deg 25% 96%)] no-underline text-[hsl(210deg 9% 40%)] ${
                 link.tagtype ? "" : "pl-4 text-[12px]"
               }`}
             >
-              {link.text.slice(0, 30)}
+              {link.text}
             </a>
           </div>
         ))}

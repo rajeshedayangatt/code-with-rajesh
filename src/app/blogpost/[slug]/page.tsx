@@ -92,60 +92,17 @@ export default async function BlogPost({
             </div>
           </header>
 
-          <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0 dark:divide-gray-700">
+          <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8  dark:divide-gray-700">
             <div className="divide-y divide-gray-200 xl:col-span-3 xl:row-span-2 xl:pb-0 dark:divide-gray-700">
               <div className="prose dark:prose-invert max-w-none pb-8 pt-10">
+                <OnThisPage
+                  htmlContent={htmlContent}
+                  className="text-sm w-[100%]"
+                />
                 <div dangerouslySetInnerHTML={{ __html: htmlContent }}></div>
                 <AccordianDemo faq={data.faq} />
               </div>
             </div>
-
-            <footer className="sticky top-20">
-              <div className="divide-gray-200 text-sm font-medium leading-5 xl:col-start-1 xl:row-start-2 xl:divide-y dark:divide-gray-700">
-                {/* <div className="py-4 xl:py-8">
-                  <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                    Tags
-                  </h2>
-                  <div className="flex flex-wrap">
-                    {data.tags &&
-                      data.tags.map((tag: string) => (
-                        <a
-                          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase"
-                          href={`/blogpost/${data.slug} `}
-                        >
-                          {tag}
-                        </a>
-                      ))}
-                  </div>
-                </div> */}
-                <div className="flex justify-between py-4 xl:block xl:space-y-8 xl:py-20">
-                  <div>
-                    <OnThisPage
-                      htmlContent={htmlContent}
-                      className="text-sm w-[100%]"
-                    />
-                    <div className="pt-4 xl:pt-8">
-                      <Link
-                        className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                        aria-label="Back to the blog"
-                        href="/blog"
-                      >
-                        {" "}
-                        ← Back to the blog
-                      </Link>
-                    </div>
-                    {/* <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                      Previous Article
-                    </h2>
-                    <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                      <a className="break-words" href="/blog/payoneer">
-                        Payoneer: Your Gateway to Global Financial Transactions
-                      </a>
-                    </div> */}
-                  </div>
-                </div>
-              </div>
-            </footer>
           </div>
         </div>
       </article>
@@ -184,11 +141,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: data.title,
       description: data.description,
       url: process.env.NEXT_PUBLIC_URL + "/blogpost/" + params.slug,
+      images: [process.env.NEXT_PUBLIC_URL + data.image],
     },
     twitter: {
       card: "summary_large_image",
       title: data.title,
       description: data.description,
+      images: [process.env.NEXT_PUBLIC_URL + data.image],
     },
     robots: {
       index: true, // Set to false if you don't want search engines to index the page
