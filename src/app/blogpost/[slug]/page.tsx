@@ -166,7 +166,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       "how-to-create-a-3d-tesla-car-configurator-with-react-nextjs-threejs-and-typescript-part-1";
   }
 
-  const filePath = `content/${slugname}.mdx`;
+  //const filePath = `content/${slugname}.mdx`;
+  const filePath = path.join(process.cwd(), "content", slugname + ".mdx");
 
   if (fs.existsSync(filePath)) {
     const fileContent = fs.readFileSync(filePath, "utf-8");
