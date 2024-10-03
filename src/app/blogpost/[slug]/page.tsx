@@ -18,7 +18,7 @@ import type { Metadata } from "next";
 import path from "path";
 import AnalyticsEvents from "@/components/AnalyticsEvents";
 import AccordianDemo from "@/components/AccordianDemo";
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
 
 // import { event } from "@/components/GoogleAnalytics";
 
@@ -60,7 +60,7 @@ export default async function BlogPost({
 
   // And finally, process the input
   //.processSync("# test");
-  let slugname = params.slug;
+  const slugname = params.slug;
   // if (
   //   params.slug ===
   //   "learn-how-to-creating-a-3d-tesla-car-configurator-with-react-nextjs-and-typescript-part-1"
@@ -147,7 +147,7 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // read route params
 
-  let slugname = params.slug;
+  const slugname = params.slug;
   // if (
   //   params.slug ===
   //   "learn-how-to-creating-a-3d-tesla-car-configurator-with-react-nextjs-and-typescript-part-1"
