@@ -67,17 +67,19 @@ export default async function BlogPost({
   ) {
     slugname =
       "how-to-create-a-3d-tesla-car-configurator-with-react-nextjs-threejs-and-typescript-part-1";
-  }
-
-  if (
+  } else if (
     params.slug ===
     "getting-stated-with-nextjs-threejs-typescript-a-beginners-guide"
   ) {
     slugname =
       "how-to-create-a-3d-tesla-car-configurator-with-react-nextjs-threejs-and-typescript-part-1";
+  } else {
+    slugname = params.slug;
   }
 
+  console.log("slugname", slugname);
   const filePath = path.join(process.cwd(), "content", slugname + ".mdx");
+  console.log("filePath", filePath);
 
   // const filePath = `content/${params.slug}.md`;
 
@@ -154,18 +156,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   ) {
     slugname =
       "how-to-create-a-3d-tesla-car-configurator-with-react-nextjs-threejs-and-typescript-part-1";
-  }
-
-  if (
+  } else if (
     params.slug ===
     "getting-stated-with-nextjs-threejs-typescript-a-beginners-guide"
   ) {
     slugname =
       "how-to-create-a-3d-tesla-car-configurator-with-react-nextjs-threejs-and-typescript-part-1";
+  } else {
+    slugname = params.slug;
   }
 
-  //const filePath = `content/${slugname}.mdx`;
+  console.log("slugname", slugname);
   const filePath = path.join(process.cwd(), "content", slugname + ".mdx");
+  console.log("filePath", filePath);
+
+  //const filePath = `content/${slugname}.mdx`;
+  // const filePath = path.join(process.cwd(), "content", slugname + ".mdx");
 
   //if (fs.existsSync(filePath)) {
   const fileContent = fs.readFileSync(filePath, "utf-8");
