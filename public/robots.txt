@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://codewithrajesh.netlify.app/
+Host: https://www.code-with-rajesh.online/
 
 # Sitemaps
-Sitemap: https://codewithrajesh.netlify.app/sitemap.xml
+Sitemap: https://www.code-with-rajesh.online/sitemap.xml

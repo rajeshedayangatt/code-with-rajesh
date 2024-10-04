@@ -1,4 +1,4 @@
 module.exports = {
-  siteUrl: "https://codewithrajesh.netlify.app/",
+  siteUrl: process.env.NEXT_PUBLIC_BASE_URL,
   generateRobotsTxt: true, // Automatically generate robots.txt
 };
