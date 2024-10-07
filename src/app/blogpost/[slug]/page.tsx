@@ -60,7 +60,11 @@ export default async function BlogPost({
 
   // And finally, process the input
   //.processSync("# test");
-  const slugname = params.slug;
+  var slugname = params.slug;
+
+  if (params.slug === "getting-started-with-nodejs") {
+    slugname = "how-to-get-started-with-nodejs-a-beginners-guide";
+  }
   // if (
   //   params.slug ===
   //   "learn-how-to-creating-a-3d-tesla-car-configurator-with-react-nextjs-and-typescript-part-1"
@@ -149,7 +153,10 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // read route params
 
-  const slugname = params.slug;
+  var slugname = params.slug;
+  if (params.slug === "getting-started-with-nodejs") {
+    slugname = "how-to-get-started-with-nodejs-a-beginners-guide";
+  }
   // if (
   //   params.slug ===
   //   "learn-how-to-creating-a-3d-tesla-car-configurator-with-react-nextjs-and-typescript-part-1"
