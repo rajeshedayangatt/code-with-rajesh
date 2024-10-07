@@ -11,7 +11,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import GoogleAdsense from "@/components/Adsense";
-import Script from "next/script";
+// import Script from "next/script";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
