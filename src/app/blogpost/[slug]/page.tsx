@@ -60,7 +60,7 @@ export default async function BlogPost({
 
   // And finally, process the input
   //.processSync("# test");
-  var slugname = params.slug;
+  let slugname = params.slug;
 
   if (params.slug === "getting-started-with-nodejs") {
     slugname = "how-to-get-started-with-nodejs-a-beginners-guide";
@@ -153,7 +153,7 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // read route params
 
-  var slugname = params.slug;
+  let slugname = params.slug;
   if (params.slug === "getting-started-with-nodejs") {
     slugname = "how-to-get-started-with-nodejs-a-beginners-guide";
   }
@@ -189,13 +189,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: data.description,
     keywords: data.keywords,
     alternates: {
-      canonical: process.env.NEXT_PUBLIC_URL + "/blogpost/" + params.slug,
+      canonical: process.env.NEXT_PUBLIC_URL + "/blogpost/" + slugname,
     },
     openGraph: {
       type: "article",
       title: data.title,
       description: data.description,
-      url: process.env.NEXT_PUBLIC_URL + "/blogpost/" + params.slug,
+      url: process.env.NEXT_PUBLIC_URL + "/blogpost/" + slugname,
       images: [process.env.NEXT_PUBLIC_URL + data.image],
     },
     twitter: {
