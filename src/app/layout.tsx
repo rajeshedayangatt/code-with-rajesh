@@ -11,6 +11,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import GoogleAdsense from "@/components/Adsense";
+import Script from "next/script";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -44,7 +45,7 @@ export default function RootLayout({
       <GoogleAdsense pId={process.env.NEXT_PUBLIC_ADDSENSE_ID ?? ""} />
       <Analytics />
       <SpeedInsights />
-
+      <Ad />
       <body
         className={cn(
           `${geistSans.variable} ${geistMono.variable} min-h-screen bg-background antialiased`
@@ -64,5 +65,17 @@ export default function RootLayout({
         </section>
       </body>
     </html>
+  );
+}
+
+function Ad() {
+  return (
+    <>
+      <Script
+        async={true}
+        data-cfasync="false"
+        src="//pl24620520.cpmrevenuegate.com/58d59c135b31fb82c15f1f3a912431b1/invoke.js"
+      ></Script>
+    </>
   );
 }
