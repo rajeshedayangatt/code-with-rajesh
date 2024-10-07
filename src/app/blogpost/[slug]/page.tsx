@@ -60,11 +60,8 @@ export default async function BlogPost({
 
   // And finally, process the input
   //.processSync("# test");
-  let slugname = params.slug;
+  const slugname = params.slug;
 
-  if (params.slug === "getting-started-with-nodejs") {
-    slugname = "how-to-get-started-with-nodejs-a-beginners-guide";
-  }
   // if (
   //   params.slug ===
   //   "learn-how-to-creating-a-3d-tesla-car-configurator-with-react-nextjs-and-typescript-part-1"
@@ -153,10 +150,7 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // read route params
 
-  let slugname = params.slug;
-  if (params.slug === "getting-started-with-nodejs") {
-    slugname = "how-to-get-started-with-nodejs-a-beginners-guide";
-  }
+  const slugname = params.slug;
   // if (
   //   params.slug ===
   //   "learn-how-to-creating-a-3d-tesla-car-configurator-with-react-nextjs-and-typescript-part-1"
@@ -189,13 +183,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: data.description,
     keywords: data.keywords,
     alternates: {
-      canonical: process.env.NEXT_PUBLIC_URL + "/blogpost/" + slugname,
+      canonical: process.env.NEXT_PUBLIC_URL + "/blogpost/" + params.slug,
     },
     openGraph: {
       type: "article",
       title: data.title,
       description: data.description,
-      url: process.env.NEXT_PUBLIC_URL + "/blogpost/" + slugname,
+      url: process.env.NEXT_PUBLIC_URL + "/blogpost/" + params.slug,
       images: [process.env.NEXT_PUBLIC_URL + data.image],
     },
     twitter: {
