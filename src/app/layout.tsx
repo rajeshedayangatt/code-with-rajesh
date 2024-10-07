@@ -76,6 +76,10 @@ function Ad() {
         data-cfasync="false"
         src="//pl24620520.cpmrevenuegate.com/58d59c135b31fb82c15f1f3a912431b1/invoke.js"
       ></Script>
+      <Script
+        type="text/javascript"
+        src="//pl24620598.cpmrevenuegate.com/93/97/d5/9397d57bb168b301fbcacffb5d8d8364.js"
+      ></Script>
     </>
   );
 }
