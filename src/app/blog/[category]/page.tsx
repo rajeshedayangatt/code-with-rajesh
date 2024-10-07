@@ -1,12 +1,12 @@
 import React from "react";
-import * as fs from "fs";
-import matter from "gray-matter";
 import type { Metadata } from "next";
-import path from "path";
 import Link from "next/link";
 import { commonPageMetadata } from "@/config/site";
 import PostTags from "@/components/PostTags";
-import { tags } from "@/config/tags";
+import * as fs from "fs";
+import path from "path";
+
+import matter from "gray-matter";
 import { BlogType } from "@/config/types";
 
 export const metadata: Metadata = commonPageMetadata;
@@ -28,14 +28,10 @@ export function fetchBlogs(category: string) {
 
   return blogs;
 }
-const BlogList = () => {
-  const blogs: BlogType[] = [];
 
-  tags.map((tag) => {
-    const blog = fetchBlogs(tag.title);
-
-    blogs.push(...blog);
-  });
+const BlogList = ({ params }: { params: { category: string } }) => {
+  const data = fetchBlogs(params.category);
+  const blogs = data;
   return (
     <main className="mb-auto">
       <div>
@@ -98,6 +94,11 @@ const BlogList = () => {
                   </li>
                 ))}
             </ul>
+            {blogs.length === 0 && (
+              <p className="text-gray-500 dark:text-gray-400">
+                No posts found.
+              </p>
+            )}
             {/* <div className="space-y-2 pb-8 pt-6 md:space-y-5">
               <nav className="flex justify-between">
                 <button

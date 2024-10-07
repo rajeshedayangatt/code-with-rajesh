@@ -25,7 +25,7 @@ export default function About() {
               decoding="async"
               data-nimg="1"
               className="h-48 w-48 rounded-full"
-              src="1721844797980.jpg"
+              src="/1721844797980.jpg"
               style={{ color: "transparent" }}
             />
             <h3 className="pb-2 pt-4 text-2xl font-bold leading-8 tracking-tight">

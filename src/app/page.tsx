@@ -6,36 +6,37 @@ import path from "path";
 import BlogAnchor from "@/components/BlogAnchor";
 import Link from "next/link";
 import { commonPageMetadata } from "@/config/site";
+import { tags } from "@/config/tags";
+import { BlogType } from "@/config/types";
 
 export const metadata: Metadata = commonPageMetadata;
+export function fetchBlogs(category: string) {
+  const postsDirectory = path.join(process.cwd(), "content", category);
 
-interface Blog {
-  slug: string;
-  title: string;
-  content: string;
-  image: string;
-  description: string;
-  blogintro: string;
-  url: string;
-  tags: string[];
-  time: string;
+  const dirContent = fs.readdirSync(postsDirectory, "utf-8");
+
+  const blogs = dirContent.map((file) => {
+    const postsDirectory = path.join(process.cwd(), "content", category, file);
+
+    const content = fs.readFileSync(postsDirectory, "utf-8");
+
+    // console.log(content);
+
+    const { data } = matter(content);
+    return data as BlogType;
+  });
+
+  return blogs;
 }
 
-const filePath = path.join(process.cwd(), "content");
-
-const dirContent = fs.readdirSync(filePath, "utf-8");
-
-const blogs = dirContent.map((file) => {
-  const dir = path.join(process.cwd(), "content", file);
-
-  const content = fs.readFileSync(dir, "utf-8");
-  const { data } = matter(content);
-  return data as Blog;
-});
-
-// console.log(blogs);
-
 export default function Home() {
+  const blogs: BlogType[] = [];
+
+  tags.map((tag) => {
+    const blog = fetchBlogs(tag.title);
+
+    blogs.push(...blog);
+  });
   return (
     <main className="mb-auto">
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -66,7 +67,7 @@ export default function Home() {
                         <div>
                           <h2 className="text-2xl font-bold leading-8 tracking-tight">
                             <Link
-                              href={`blogpost/${blog.slug} `}
+                              href={`blog/${blog.slug} `}
                               className="text-gray-900 dark:text-gray-100"
                             >
                               {blog.title}
@@ -81,13 +82,13 @@ export default function Home() {
                           <div className="flex flex-wrap">
                             {blog.tags &&
                               blog.tags.map((tag: string) => (
-                                <a
+                                <Link
                                   key={tag}
                                   className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 mr-3 text-sm font-medium uppercase"
-                                  href="#"
+                                  href={`blog/${tag} `}
                                 >
                                   {tag}
-                                </a>
+                                </Link>
                               ))}
                           </div>
                         </div>

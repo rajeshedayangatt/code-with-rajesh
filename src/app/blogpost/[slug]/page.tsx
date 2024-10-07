@@ -27,6 +27,7 @@ export default async function BlogPost({
 }: {
   params: { slug: string };
 }) {
+  console.log("params", params);
   const processor = unified()
     // Take Markdown as input and turn it into MD syntax tree
     .use(remarkParse)

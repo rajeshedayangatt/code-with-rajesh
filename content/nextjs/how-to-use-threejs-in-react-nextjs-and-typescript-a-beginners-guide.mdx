@@ -1,0 +1,356 @@
+---
+slug: "how-to-use-threejs-in-react-nextjs-and-typescript-a-beginners-guide"
+title: "How to Use ThreeJS in React, NextJS, and TypeScript: A Beginner's Guide"
+description: "Learn how to get started with Next.js and Three.js in this beginner-friendly guide. "
+image: "/images/nodejs-beginners-guide.png"
+url: "/blog/how-to-use-threejs-in-react-nextjs-and-typescript-a-beginners-guide"
+tags: ["nextjs"]
+keywords: "threejs, react, nextjs, typescript, javascript, web development, 3D web, coding, beginner, frontend, programming"
+time: " September 30, 2024"
+blogintro: "As a developer, have you ever dreamt of creating interactive 3D experiences that engage and delight users? If you're looking to venture into the world of 3D graphics with Next.js and React Three Fiber, you’re in for an exciting journey! These powerful technologies empower you to build dynamic web applications that not only showcase stunning 3D visuals but also offer seamless customization options.
+In this beginner-friendly guide, we’ll explore how to set up a Next.js project and integrate React Three Fiber to create a 3D configurator for an Apple Watch. Users will be able to customize the watch’s strap and clasp with their own texture images, enhancing the interactive experience. Whether you're a newcomer to 3D development or an experienced coder wanting to dive into a new realm, this guide will simplify the process and equip you with the knowledge to create a captivating configurator.
+Let’s embark on this journey and discover how to bring your ideas to life with Next.js and React Three Fiber!"
+faq:
+  [
+    {
+      "question": "Why should I use TypeScript with Next.js and Three.js?",
+      "answer": "TypeScript provides robust typing, improving code quality, maintainability, and reducing runtime errors. In Next.js, TypeScript helps manage API routes, pages, and props, ensuring that types are correct. In Three.js, TypeScript helps define types for 3D objects, vectors, and materials, making it easier to spot potential problems during development. These frameworks integrate with TypeScript",
+    },
+    {
+      "question": "What is the benefit of using Next.js with Three.js?",
+      "answer": "Using Next.js with Three.js allows for server-side rendering and static site generation, enhancing performance and SEO while enabling interactive 3D graphics.",
+    },
+    {
+      "question": "Do I need prior experience with WebGL to use Three.js?",
+      "answer": "No, you don't need to know WebGL to start using Three.js. The library simplifies many of the complexities involved in WebGL.",
+    },
+    {
+      "question": "Can I load 3D models in a Next.js app using Three.js?",
+      "answer": "Yes, you can load various 3D model formats like GLTF and OBJ using loaders such as `GLTFLoader` provided by Three.js.",
+    },
+    {
+      "question": "How can I optimize performance when using Three.js in my Next.js project?",
+      "answer": "You can optimize performance by using smaller models and textures, implementing lazy loading, and utilizing efficient geometry and material types in Three.js.",
+    },
+    {
+      "question": "Is Three.js compatible with React hooks?",
+      "answer": "Yes, Three.js works well with React hooks like `useEffect` and `useRef`, allowing you to manage the lifecycle of Three.js scenes in your React components.",
+    },
+    {
+      "question": "How can I handle dynamic routes in Next.js for different 3D models?",
+      "answer": "You can use Next.js dynamic routing by creating a `[slug].tsx` file in the `src/app` directory to fetch model data based on the URL.",
+    },
+    {
+      "question": "What are some common use cases for combining Next.js and Three.js?",
+      "answer": "Common use cases include interactive 3D product configurators, virtual tours, and immersive marketing campaigns.",
+    },
+    {
+      "question": "Can I add animations to my Three.js models?",
+      "answer": "Yes, you can animate models using `requestAnimationFrame()` or libraries like GSAP for more complex animations.",
+    },
+    {
+      "question": "How can I deploy my Next.js and Three.js application?",
+      "answer": "You can deploy your app on platforms like Vercel, Netlify, or any hosting service that supports Node.js.",
+    },
+    {
+      "question": "Is Next.js required for using Three.js?",
+      "answer": "No, Next.js is not required for Three.js, but it offers benefits like SEO optimization and routing that can enhance your project.",
+    },
+  ]
+---
+
+## Introduction
+
+As a developer, have you ever dreamt of creating interactive 3D experiences that engage and delight users? If you're looking to venture into the world of 3D graphics with Next.js and React Three Fiber, you’re in for an exciting journey! These powerful technologies empower you to build dynamic web applications that not only showcase stunning 3D visuals but also offer seamless customization options.
+In this beginner-friendly guide, we’ll explore how to set up a Next.js project and integrate React Three Fiber to create a 3D configurator for an Apple Watch. Users will be able to customize the watch’s strap and clasp with their own texture images, enhancing the interactive experience. Whether you're a newcomer to 3D development or an experienced coder wanting to dive into a new realm, this guide will simplify the process and equip you with the knowledge to create a captivating configurator.
+Let’s embark on this journey and discover how to bring your ideas to life with Next.js and React Three Fiber!
+
+## What is Next.js?
+
+Next.js is a React-based framework that offers server-side rendering, static site generation, and many built-in optimizations for building high-performance web applications.
+
+<div>
+  <table class="table-fixed">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Hybrid Rendering with Three.js Integration</td>
+        <td>
+          Next.js allows you to use server-side rendering (SSR) or static site
+          generation (SSG) alongside Three.js for delivering optimized 3D
+          content. You can render components initially on the server for faster
+          page loads, while complex Three.js animations or models can be handled
+          client-side, ensuring that 3D applications remain performant and
+          SEO-friendly.
+        </td>
+      </tr>
+      <tr>
+        <td>Dynamic Routing and API Endpoints for 3D Content</td>
+        <td>
+          Using API routes in Next.js, you can manage dynamic content for 3D
+          Specific 3D assets, textures, or models such as loading
+          Configurations based on user interactions or queries. This enables
+          Creating dynamic 3D visuals in Three.js that can respond to the user
+          Input allows for customizable or interactive 3D experiences (eg.
+          A 3D configurator or visualization tool).
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+
+## What is Three.js?
+
+Three.js is a JavaScript 3D library that makes WebGL easier to use. It allows developers to create 3D graphics in a web browser without the need for extensive WebGL knowledge.
+
+<div>
+  <table class="table-fixed">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>WebGL Abstraction:</td>
+        <td>
+          Three.js provides a powerful abstraction over WebGL, making it much
+          easier to create and render 3D graphics in the browser without
+          directly working with low-level WebGL code. It simplifies tasks like
+          creating 3D objects, handling lights, cameras, materials, and
+          textures, allowing developers to focus on the creative aspects of 3D
+          development rather than dealing with complex WebGL APIs.
+        </td>
+      </tr>
+      <tr>
+        <td>Rich Ecosystem of Objects and Effects</td>
+        <td>
+          Three.js provides a powerful abstraction over WebGL and makes a lot of
+          sense And it's easy to create and render 3D graphics in the browser
+          Works directly with low-level WebGL code. It simplifies tasks such as
+          Create 3D objects, manipulate lights, cameras, materials, and more
+          Textures allow developers to focus on the creative aspects of 3D
+          complexity.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## Prerequisites
+
+Before diving into this guide, you should have:
+
+- Basic knowledge of Threejs and React
+- Node.js and npm installed on your machine
+
+## Setting Up a Next.js Project
+
+##### Let’s start by creating a Next.js app.
+
+### 1. Install Next.js: Open your terminal and run the following commands:
+
+```bash
+npx create-next-app@latest
+```
+
+During the setup process, you’ll be asked a few questions like:
+
+- Would you like to use TypeScript?
+- Would you like to use ESLint?
+- Would you like to use Tailwind CSS?
+- Follow the prompts by typing yes or no as shown in the image below:
+
+<img
+  src="/images/next-three-start-1.png"
+  alt="installation setup reference image"
+/>
+
+Simply refer to the image above for guidance on how to answer each question.This process will create a new project
+
+### 2. Start the development server by entering following commands:
+
+```bash
+npm run dev
+```
+
+If there are no errors, you can enter `http://localhost:3000/` in your browser, and you will see the following screen:
+
+<img
+  src="/images/next-three-start-2.png"
+  alt="installation setup reference image"
+/>
+
+## Install Three.js
+
+Now that we have a Next.js project ready, let’s install Three.js to start working with 3D graphics.
+
+### 1. Install Three.js: In your project directory, run:
+
+```bash
+npm install --save three
+```
+
+This will install Three.js and add it to your project dependencies.
+
+## Creating a simple 3D scene using Three.js
+
+To render a 3D scene in your Next.js app, follow these steps:
+
+### 1. Create a Three.js Component
+
+Inside your `src/app/` directory, create a new folder named `components` and add a file with the name `ThreejsScene.tsx`. Use the following tsx code:
+
+```tsx
+"use client";
+
+import React, { useEffect, useRef } from "react";
+import * as THREE from "three";
+
+/**
+ * A component that renders a simple Three.js scene
+ */
+const ThreeScene = () => {
+  /**
+   * A reference to the canvas element that will be used to render the scene
+   */
+  const canvasRef = (useRef < HTMLCanvasElement) | (null > null);
+  /**
+   * A reference to the scene
+   */
+  const sceneRef = (useRef < THREE.Scene) | (null > null);
+  /**
+   * A reference to the WebGL renderer
+   */
+  const rendererRef = (useRef < THREE.WebGLRenderer) | (null > null);
+  /**
+   * A reference to the camera
+   */
+  const cameraRef = (useRef < THREE.PerspectiveCamera) | (null > null);
+
+  /**
+   * An effect that initializes the scene, camera, and renderer on mount
+   * and cleans up on unmount
+   */
+  useEffect(() => {
+    if (!canvasRef.current) {
+      console.error("Canvas ref is null");
+      return;
+    }
+    // Initialize scene, camera, and renderer
+    const scene = new THREE.Scene();
+    sceneRef.current = scene;
+
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000
+    );
+    camera.position.z = 5;
+    cameraRef.current = camera;
+
+    const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    rendererRef.current = renderer;
+
+    // Add a simple cube
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+
+    // Animation loop
+    const animate = () => {
+      requestAnimationFrame(animate);
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
+      renderer.render(scene, camera);
+    };
+
+    animate();
+
+    // Clean up on component unmount
+    return () => {
+      renderer.dispose();
+      scene.clear();
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} />;
+};
+
+export default ThreeScene;
+```
+
+### Explanation:
+
+1. References: We use useRef to create references for the canvas, scene, camera, and renderer, allowing us to access and manipulate them throughout the component lifecycle.
+
+2. useEffect Hook: This hook initializes the Three.js scene and handles the animation loop. The cleanup function disposes of the renderer and clears the scene when the component unmounts.
+
+3. Canvas Element: We return a canvas element where the Three.js scene will be rendered.
+
+### 2. Integrate the Three.js Canvas Component:
+
+Next step is to integrate the threejs canvas component in the src/page.tsx .Open src/page.tsx and modify it to include the ThreeScene component:
+
+Open `src/page.tsx` and modify it to include the `ThreejsScene` component:
+
+```tsx
+import ThreejsScene from "./components/ThreejsScene";
+
+export default function Home() {
+  return (
+    <div className="w-full h-screen">
+      <h1 className="mx-auto text-2xl text-center">
+        Next js and Three js 3d scene
+      </h1>
+      <ThreejsScene />
+    </div>
+  );
+}
+```
+
+If there are no errors in terminal, you can refresh `http://localhost:3000/` in your browser, and you will see the following screen:
+
+<img src="/images/next-three-start-4.gif" alt="3d rendering cube animation" />
+
+## Exploring Further
+
+This guide sets up a basic integration between Next.js and Three.js. You can take this further by exploring more advanced topics like:
+
+- Adding lighting and shadows
+- Loading 3D models (GLTF, OBJ)
+- Responding to user input (mouse, keyboard)
+- Integrating shaders for advanced visual effects
+
+## Conclusion
+
+Thank you for reading! To further explore the code and concepts discussed in this guide, visit my GitHub repository:
+
+- [Tutorial Project Repository](https://github.com/rajeshedayangatt/nextjs-threejs-getting-started-)
+
+Combining Next.js and Three.js allows you to build visually stunning, interactive web applications with ease. By leveraging the strengths of both tools—server-side rendering and static generation from Next.js, and powerful 3D rendering from Three.js—you can create unique web experiences.
+
+With the basics covered, you are now ready to explore more complex 3D scenes and interactions. Happy coding!
+
+## Additional Resources
+
+For more examples and inspiration, check out the following links:
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Three.js Examples](https://threejs.org/examples/)
+
+These resources will help you explore more advanced features and use cases for both frameworks.
+
+<hr />
+
+If you found this guide helpful and want to learn more about Next.js, Three.js, or other web development topics, stay tuned for more tutorials on this blog!

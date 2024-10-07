@@ -1,0 +1,271 @@
+---
+slug: "how-to-create-a-3d-tesla-car-configurator-with-react-nextjs-threejs-and-typescript-part-2"
+title: "How to Create a 3D Tesla Car Configurator with React, Next.js, Three.js and TypeScript - Part 2"
+description: "This is the part 2 of   how to create a 3D Tesla car configurator using React, Next.js, Three.js and TypeScript "
+image: "/images/Screenshot 2024-10-01 174323.png"
+url: "/blog/creating-3d"
+tags: ["nextjs"]
+keywords: "3D car configurator, 3d car configurator three js, Tesla car customization, React Three Fiber, Next.js TypeScript tutorial, Three.js car model, JavaScript 3D development, web development with Three.js, interactive 3D web app, car configurator tutorial"
+time: " October 1, 2024"
+blogintro: "Discover how to create a 3D Tesla car configurator using React, Next.js and TypeScript. Learn step-by-step with Three.js and take your web development to the next level part 2."
+faq:
+  [
+    {
+      "question": "What is Three.js, and how does it relate to 3D web development?",
+      "answer": "Three.js is a JavaScript library that helps create 3D graphics in web browsers. It makes it easier to render 3D objects, add textures, lighting, and animations. In 3D web development, Three.js is important for making engaging 3D experiences like configurators, games, and interactive visualizations.",
+    },
+    {
+      "question": "Why should I use Next.js for my 3D configurator project?",
+      "answer": "Next.js is a framework for React that offers features like server-side rendering (SSR), static site generation (SSG), and built-in SEO improvements, making it great for 3D configurator projects. Using Next.js helps your 3D configurator load faster and perform better in search engines. Its strong routing and React-based structure also help manage 3D scenes and customization options efficiently.",
+    },
+    {
+      "question": "How can TypeScript enhance my 3D configurator project?",
+      "answer": "TypeScript adds static typing to JavaScript, which helps reduce errors during development and improves code quality. For a 3D configurator project, TypeScript makes it easier to maintain code, offers autocompletion, and provides clearer documentation with defined types. This can greatly improve your development process and make it easier to scale the project.",
+    },
+    {
+      "question": "What are the benefits of using React Three Fiber for 3D development?",
+      "answer": "React Three Fiber lets you build 3D experiences in React by handling 3D objects as React components. This works well with React's state management and lifecycle methods. Using React Three Fiber in your 3D projects makes it easier to reuse code, use React hooks, and improve efficiency by organizing 3D objects within the React framework.",
+    },
+    {
+      "question": "Can I customize textures and materials in my 3D configurator?",
+      "answer": "Yes, you can fully customize textures and materials in a 3D configurator. By accessing the mesh of your 3D model, you can change material properties and apply custom textures, including images uploaded by users. This flexibility allows for interactive and personalized 3D configurators where users can see their customizations in real time.",
+    },
+  ]
+---
+
+<img
+  src="/images/Screenshot 2024-10-02 141608.png"
+  alt="3D Tesla car configurator example with React and Next.js Browser View Screenshot"
+/>
+
+This is my part 2 of my previous post <a href="/blogpost/how-to-create-a-3d-tesla-car-configurator-with-react-nextjs-threejs-and-typescript-part-1" target="_blank">
+How to Create a 3D Tesla Car Configurator with React, Next.js, Three.js and TypeScript - Part 1</a>. You can find project file ins the github repository <a href="https://github.com/rajeshedayangatt/3d-car-configurator">Click here</a>
+In this post we will create a interactive ui changing the color of 3d tesla car with Next.js and React Three Fiber.
+
+## Start the server
+
+You can start the server by running the below commands. `i am hoping you have clone the repository project from git`
+
+```bash
+npm install
+npm run dev
+```
+
+If you try to load the `http://localhost:3000/` in browser you will see the 3d tesla car configurator (Message me if you found any errors in the terminal while installing or running node packages)
+
+<img
+  src="/images/Screenshot 2024-10-01 174323.png"
+  alt="3D Tesla car configurator example with React and Next.js Screenshot"
+/>
+
+## Adding a color picker panel
+
+We need to add a color picker panel for updating the body part of the Tesla 3D car. There is a package called <a href='https://github.com/pmndrs/leva'><b>Leva</b></a> that easily integrates a GUI into a Next.js application.
+If you want more stylized color-picking dashboards, they can be made using Tailwind CSS and React state management libraries. Here, I am just trying to teach you the basics of how everything works so you can build on top of this.
+
+Add this to the `dependencies` in package.json
+
+```json
+"leva": "^0.9.35",
+```
+
+Add this after to the `devDependencies` in package.json `"There is an error i have faced when using color picker in next.js"`. I have found a solution from here <a href="https://github.com/pmndrs/leva/issues/508">Link</a>.
+
+```json
+"overrides": {
+    "leva": {
+        "@radix-ui/react-portal": "1.0.2"
+    }
+}
+```
+
+checkout the screenshot if you have any confusion
+
+<img
+  src="/images/Screenshot 2024-10-02 120114.png"
+  alt="3D Tesla car configurator example with React and Next.js Package Json Screenshot"
+/>
+
+Run the command in terminal for installing
+
+```bash
+npm install
+```
+
+Update the `src/app/components/CanvasRender.tsx` component by adding `Leva`
+
+```typescript
+"use client";
+import React, { Suspense, useEffect } from "react";
+import { Canvas } from "@react-three/fiber";
+import Car from "./Car";
+import { Environment, OrbitControls } from "@react-three/drei";
+import { Ground } from "./Ground";
+import { useControls, Leva } from "leva";
+
+const CanvasRender = (): JSX.Element => {
+  const { frontLogoColor } = useControls({ frontLogoColor: "#f00" });
+  const { carBodyColor } = useControls({ carBodyColor: "#f00" });
+
+  return (
+    <div className="w-full h-full">
+      <Canvas camera={{ fov: 75, position: [0, 5, 5] }}>
+        <ambientLight intensity={1} />
+        <OrbitControls
+          enableZoom={true}
+          enablePan={false}
+          minPolarAngle={0}
+          maxPolarAngle={Math.PI / 2.25}
+          makeDefault
+        />
+        <Suspense fallback={null}>
+          <Environment
+            resolution={256}
+            background={true}
+            blur={10}
+            files="piazza_san_marco_1k.hdr"
+          ></Environment>
+          <Car frontLogoColor={frontLogoColor} carBodyColor={carBodyColor} />
+          <Ground />
+        </Suspense>
+      </Canvas>
+
+      <Leva />
+    </div>
+  );
+};
+
+export default CanvasRender;
+```
+
+### Code Explanation
+
+1. First we import `useControls` hook and `Leva` component for implementing the color picker gui
+
+   ```typescript
+   import { useControls, Leva } from "leva";
+   ```
+
+2. After we use `useControls` hooks set color picker for each body part
+
+   ```typescript
+   const { frontLogoColor } = useControls({ frontLogoColor: "#f00" });
+   const { carBodyColor } = useControls({ carBodyColor: "#f00" });
+   ```
+
+   <blockquote>
+     Here we updating only two part of the tesla car configurator model for
+     demo. purpose.
+   </blockquote>
+
+3. Update `Car` component by passing `useControls` color values as props.
+
+   ```typescript
+   <Car frontLogoColor={frontLogoColor} carBodyColor={carBodyColor} />
+   ```
+
+4. Add the `<Leva />` component to `CanvasRender`.
+
+   ```typescript
+   <Leva />
+   ```
+
+## Adding configurator functionality
+
+Update the `src/app/components/Car.tsx`
+
+```typescript
+import { useGLTF } from "@react-three/drei";
+import React, { useEffect } from "react";
+import { Color } from "three";
+
+const Car = ({ ...props }) => {
+  const { scene } = useGLTF("car.glb");
+  const carBody = scene.getObjectByName("DoorHandles");
+  const carFrontLogo = scene.getObjectByName("FrontLogo");
+
+  useEffect(() => {
+    const clr = new Color(props.carBodyColor);
+    (carBody as any).material.color = clr;
+    (carBody as any).material.needsUpdate = true;
+  }, [props.carBodyColor]);
+
+  useEffect(() => {
+    const clr = new Color(props.frontLogoColor);
+    (carFrontLogo as any).material.color = clr;
+    (carFrontLogo as any).material.needsUpdate = true;
+  }, [props.frontLogoColor]);
+  return (
+    <primitive
+      scale={1.6}
+      rotation={[0, Math.PI / 5, 0]}
+      castShadow
+      receiveShadow
+      object={scene}
+    />
+  );
+};
+
+export default Car;
+```
+
+### Code Explanation
+
+import { Color } from "three";
+
+1.  import the `Color` instance from the library for converting to  color code to `three.js` format for error free use.
+
+    ```typescript
+    import { Color } from "three";
+    ```
+
+    <blockquote>
+      Using a THREE.Color instance in Three.js helps keep colors consistent,
+      makes it easier to blend or adjust colors, and works well for performance
+      in the Three.js system. It supports different color formats like hex, RGB,
+      and HSL, and fits nicely with shaders and lighting in 3D scenes
+    </blockquote>
+
+2.  Next, we need to use the `getObjectByName` method from the `Three.js` library to retrieve the body parts of the Tesla 3D car configurator model. Please check the image below for different part of the 3d model.
+
+    ```typescript
+    const carBody = scene.getObjectByName("DoorHandles");
+    const carFrontLogo = scene.getObjectByName("FrontLogo");
+    ```
+
+    <img
+      src="/images/Screenshot 2024-10-02 134810.png"
+      alt="3D Tesla car configurator example with React and Next.js Car Model Meshes Screenshot"
+    />
+
+3.  Finally we use `useEffect` hook from `react.js` to update the color material of the `carBody` and `carFrontLogo` meshes.
+
+    ```typescript
+    useEffect(() => {
+      const clr = new Color(props.carBodyColor);
+      (carBody as any).material.color = clr;
+      (carBody as any).material.needsUpdate = true;
+    }, [props.carBodyColor]);
+    useEffect(() => {
+      const clr = new Color(props.frontLogoColor);
+      (carFrontLogo as any).material.color = clr;
+      (carFrontLogo as any).material.needsUpdate = true;
+    }, [props.frontLogoColor]);
+    ```
+
+#### If you refresh the browser you will see the below image .
+
+<img
+  src="/images/Screenshot 2024-10-02 141608.png"
+  alt="3D Tesla car configurator example with React and Next.js Browser View Screenshot"
+/>
+
+Yes! Our car configurator now works perfectly!
+
+## Conclusion
+
+Congratulations you now have a great starting point to build a 3D product configurator using React Three Fiber, Next.js and TypeScript.
+
+The code is available here: <a href="https://github.com/rajeshedayangatt/3d-car-configurator">https://github.com/rajeshedayangatt/3d-car-configurator</a>
+
+I highly recommend you to read <a href="https://r3f.docs.pmnd.rs/getting-started/introduction">React Three Fiber documentation</a> and check their examples to discover what you can achieve and how to do it.
