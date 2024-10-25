@@ -13,7 +13,7 @@ export default function Page() {
         <div className="flex max-w-lg flex-wrap">
           {tags &&
             tags.map((tag) => (
-              <div className="mb-2 mr-5 mt-2">
+              <div className="mb-2 mr-5 mt-2" key={tag.id}>
                 <Link
                   key={tag.id}
                   href={`/blog/${tag.title}`}
