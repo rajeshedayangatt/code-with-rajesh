@@ -10,7 +10,7 @@ import { tags } from "@/config/tags";
 import { BlogType } from "@/config/types";
 
 export const metadata: Metadata = commonPageMetadata;
-export function fetchBlogs(category: string) {
+function fetchBlogs(category: string) {
   const postsDirectory = path.join(process.cwd(), "content", category);
 
   const dirContent = fs.readdirSync(postsDirectory, "utf-8");
