@@ -25,7 +25,7 @@ export default function Page() {
                 <Link
                   className="-ml-2 text-sm font-semibold uppercase text-gray-600 dark:text-gray-300"
                   aria-label="View posts tagged cryptocurrency"
-                  href="/blog/threejs"
+                  href={`/blog/${tag.title}`}
                 >
                   {" "}
                   ({tag.postcount})

@@ -1,0 +1,404 @@
+---
+slug: how-to-connect-mysql-with-nodejs-and-express-a-step-by-step-guide
+title: "Step-by-Step Guide: Connecting and Running CRUD Queries with MySQL, Node.js, and Express in TypeScript"
+description: "Learn how to connect and run crud queries with mysql database in node js and express using typescript"
+image: "/images/nodejs-beginners-guide.png"
+url: "/blog/nodejs/how-to-connect-mysql-with-nodejs-and-express-a-step-by-step-guide"
+tags: ["nodejs"]
+keywords: "nodejs, expressjs, mysql, typescript, javascript, web development, database connection, coding, beginner, backend, programming"
+time: " October 8, 2024"
+blogintro: In this blog post, I will teach you how to connect a MySQL database with Node.js and Express using TypeScript in a beginner-friendly manner. You will learn how to create a Node.js and Express.js server with TypeScript. After that, I will show you how to connect to a MySQL database and execute CRUD operations. I will be using a sample SQL file for basic CRUD operation queries, which you can download from my GitHub link.
+faq: [{ "question": "why should i use mysql in node js?", "answer": "
+        Using MySQL in a Node.js application can be a great choice, depending on your project's requirements. Here are some factors to consider:
+
+        Advantages of Using MySQL with Node.js
+
+        Relational Database: MySQL is a robust relational database management system (RDBMS) that provides strong consistency, ACID compliance, and support for complex queries. If your application requires complex relationships between data, MySQL is a solid choice.
+        Performance: MySQL is optimized for read-heavy operations, making it suitable for applications with high read demands. It can handle large datasets efficiently.
+        Community and Support: MySQL has a large community and extensive documentation, which can be helpful for troubleshooting and finding resources.
+        Mature Ecosystem: There are several well-maintained Node.js packages for interacting with MySQL, such as mysql, mysql2, and sequelize (an ORM).
+        Flexibility: MySQL allows you to define complex data types and relationships, which can be beneficial for applications that require structured data storage.
+        " }]
+---
+
+## Introduction
+
+In this nodejs tutorial, You will learn how to create a Node.js and Express.js server with TypeScript, how to connect to a MySQL database and execute database queries.
+
+## Why Use MySQL?
+
+MySQL is an open-source relational database management system (RDBMS) developed by Oracle. It is the most popular DBMS, used by companies with massive data storage needs such as Facebook, Netflix, Shopify, Uber, and more. MySQL falls into the relational database category.
+
+## Why Use TypeScript with Node.js and Express.js?
+
+Basically, TypeScript adds additional syntax to JavaScript to support a tighter integration with your editor. Catch errors early in your editor or in your CI/CD pipeline, and write more maintainable code.
+
+## Prerequisites
+
+Before we start, ensure you have the following:
+
+- Basic knowledge of Node Js and Mysql.
+- Node.js installed on your system.
+- Mysql Installed and configured on your system.
+- A code editor (e.g., VSCode).
+
+## Download sql file
+
+[Download `ecommerce_db` sql file used for nodejs and mysql project we are creating. Create a database `ecommerce_db` in mysql and import the sql file](https://github.com/rajeshedayangatt/nodejs-mysql-typescript-basic/blob/main/ecommerce_db.sql)
+
+## Setting Up a Node.js Project with typescript
+
+##### Let’s start by creating a Node.js server with typescript.
+
+### 1. Create new directory for the project
+
+```bash
+mkdir mysql-express-app
+cd mysql-express-app
+```
+
+### 2. Create the package.json file for npm package installation
+
+```bash
+npm init -y
+```
+
+### 3. Installing express js and it's types
+
+```bash
+npm install express
+npm install --save-dev @types/express
+```
+
+### 3. Install TypeScript and other necessary development dependencies:
+
+```bash
+npm install --save-dev typescript ts-node @types/node
+```
+
+### 4. Now we need to configure typescript
+
+First we need to create `tsconfig.json` for configuring typescript
+
+```bash
+npx tsc --init
+```
+
+Update the `tsconfig.json` file by pasting the following code
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
+```
+
+### 5. Add Scripts to `package.json`
+
+```json
+"scripts": {
+  "dev": "ts-node src/index.ts"
+}
+```
+
+### 6. Now we need to create a `src` folder inside the root directory for adding typescript files
+
+## Creating a expressjs server using typescript
+
+### 1. Create `index.ts` file inside `src` folder and copy the server running code in the file.
+
+```typescript
+import express from "express";
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.get("/", (req, res) => {
+  res.send("Welcome to mysql database connection demo!");
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+```
+
+### 2. Run the node js server
+
+```bash
+npm run dev
+```
+
+This will start the server, and we should see Server is running on http://localhost:3000. If you go to localhost in the browser you will be able to see
+`Welcome to mysql database connection demo!` in the browser.
+
+We have successfully completed the first part of `How to Connect MySQL with Node.js and Express: A Step-by-Step Guide Using TypeScript`
+
+## Connecting Mysql to Nodejs
+
+### 1. Install the mysql2 package using npm:
+
+```bash
+npm install mysql2
+npm install --save-dev @types/mysql2
+```
+
+### 2. Create a `db.ts` file inside the `src` directory and add the following code
+
+```typescript
+import mysql from "mysql2/promise";
+
+// Create the connection pool. The pool-specific settings are the defaults
+export const pool = mysql.createPool({
+  host: "127.0.0.1",
+  port: 4306,
+  user: "root",
+  password: "123456",
+  database: "ecommerce_db",
+  waitForConnections: true,
+  connectionLimit: 10,
+  maxIdle: 10, // max idle connections, the default value is the same as `connectionLimit`
+  idleTimeout: 60000, // idle connections timeout, in milliseconds, the default value 60000
+  queueLimit: 0,
+  enableKeepAlive: true,
+  keepAliveInitialDelay: 0,
+});
+
+export const checkConnection = async () => {
+  try {
+    const connection = await pool.getConnection();
+    await connection.ping(); // Sends a ping to the database to check if the connection is alive
+    console.log("Database connection successful!");
+    connection.release(); // Release the connection back to the pool
+  } catch (error) {
+    console.error("Database connection failed:", error);
+  }
+};
+```
+
+we are connecting the mysql database by calling `createPool` function from `mysql` object. we can also use `createConnection` method for connecting the mysql database (sample code given below).
+
+```typescript
+const connection = await mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  database: "test",
+});
+```
+
+If you are thinking why we used `createPool` instead of `createConnection` there are some reason for that.
+
+- If you use `createConnection` you will have to establish a new connection for each request. This means application will need to connect to the database each time to perform queries with MySQL.
+- `createPool` handles several connections and keeps them open allowing reuse. It doesn't open a new connection for each request. Instead, it uses an existing connection from the pool. This boosts query performance and cuts down on delay by steering clear of the extra work needed to set up a new connection every time.
+
+Now got the terminal and run again the `npm run dev` yow will be able to see following screen
+
+<img
+  src="/images/Screenshot 2024-10-14 164007.png"
+  alt="Node js mysql connection successful message"
+/>
+
+We have successfully connected to the mysql database .
+
+### 3. Install the nodemon package using npm:
+
+<blockquote>
+  nodemon is a tool that helps develop Node.js based applications by
+  automatically restarting the node application when file changes in the
+  directory are detected.
+</blockquote>
+
+If we change the code in a Node.js application, we have to clear the terminal and run `npm run dev` each time to reflect the changes. We can use nodemon to solve this issue, as it will automatically restart the application whenever code changes are detected. Run the command below to install the nodemon package using npm:
+
+```bash
+npm install -g nodemon
+```
+
+## Running mysql queries in nodejs
+
+Now the last part is to query mysql database using our node js application. We can create the crud apis and test with `POSTMAN` application.Please install the `POSTMAN` for testing the api's.
+
+### 1. Fetching all products from `product` table
+
+Update the `index.ts` file by importing the `checkConnection, pool` from `db.ts`;
+
+```typescript
+import { checkConnection, pool } from "./db";
+```
+
+Next update the get `/` request by following code.
+
+```typescript
+app.get("/api/products", async (req, res) => {
+  try {
+    const [rows, fields] = await pool.query(
+      "SELECT `id`, `name` FROM `products`"
+    );
+
+    if (Array.isArray(rows)) {
+      const result = rows.map((row) => {
+        return {
+          id: (row as any).id,
+          name: (row as any).name,
+        };
+      });
+
+      res.json(result);
+    } else {
+      res.send("Expected rows to be an array, but got:" + rows);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+});
+```
+
+Run the `http://localhost:3000/api/products` request api in the postman tab and you will see the product list in JSON format.
+
+<img
+  src="/images/Screenshot 2024-10-14 173717.png"
+  alt="Node js mysql fetching products list"
+/>
+
+### 2. Delete product from `product` table
+
+Create a new api request in `index.ts` for deleting the product
+
+```typescript
+app.delete("/api/products/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    await pool.query("DELETE FROM `products` WHERE `id` = ?", [id]);
+    res.status(201).json({ message: "product deleted" });
+  } catch (err) {
+    console.log(err);
+    res
+      .status(500)
+      .json({ error: "An error occurred while deleting the product" }); // Send error response  }
+  }
+});
+```
+
+Run the `http://localhost:3000/api/products/3` request api in the postman tab and you will see the product deleted message.
+
+<img
+  src="/images/Screenshot 2024-10-14 180215.png"
+  alt="Node js mysql fetching products list"
+/>
+
+### 3. Insert a new product to `product` table
+
+Add `express.json()` built-in middleware function in express after `const app = express()`.
+
+```typescript
+app.use(express.json()); // Enable JSON body parsing
+```
+
+<blockquote>
+  This is a built-in middleware function in Express. It parses incoming requests
+  with JSON payloads and is based on body-parser. Returns middleware that only
+  parses JSON and only looks at requests where the Content-Type header matches
+  the type option. This parser accepts any Unicode encoding of the body and
+  supports automatic inflation of gzip and deflate encodings.
+</blockquote>
+
+Create a new api request in `index.ts` for adding a new product
+
+```typescript
+app.post("/api/products", async (req, res) => {
+  try {
+    const { name, price, category_id, description } = req.body;
+
+    console.log(name, price, category_id, description);
+
+    const result = await pool.query(
+      "INSERT INTO `products` (`name`, `price`, `category_id`, `description`) VALUES (?, ?, ?, ?)",
+      [name, price, category_id, description]
+    );
+
+    res.status(201).json({ message: "Product added" });
+  } catch (err) {
+    console.log(err);
+    res
+      .status(500)
+      .json({ error: "An error occurred while adding the product" }); // Send error response
+  }
+});
+```
+
+### 4. Update product in the `product` table
+
+Create a new api request in `index.ts` for updating the existing product.
+
+```typescript
+app.put("/api/products/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { name, price, category_id, description } = req.body;
+
+    const [result] = await pool.query(
+      "UPDATE `products` SET `name` = ?, `price` = ?, `category_id` = ?, `description` = ? WHERE `id` = ?",
+      [name, price, category_id, description, id]
+    );
+
+    if ((result as any).affectedRows === 0) {
+      res.status(404).json({ message: "Product not found" }); // If no rows affected, respond with a 404
+      //
+    } else {
+      res.status(201).json({ message: "Product updated" });
+    }
+  } catch (err) {
+    res
+      .status(500)
+      .json({ error: "An error occurred while updating the product" }); // Handle errors
+    console.log(err);
+  }
+});
+```
+
+Run the `http://localhost:3000/api/products/6` request put api in postman and run this api request for updating a product in the table.
+
+<img
+  src="/images/Screenshot 2024-10-15 104039.png"
+  alt="Node js mysql update product"
+/>
+
+## Exploring Further
+
+This guide sets up a basic integration between Mysql and nodejs. You can take this further by exploring more advanced topics like:
+
+- Using Sequelize or TypeORM for ORM Integration
+  Simplify your database queries by using an Object-Relational Mapper (ORM) like Sequelize or TypeORM. These tools help manage relationships, migrations, and complex queries.
+
+- Implementing Database Migrations
+  Learn how to handle schema changes and version control for your database using tools like db-migrate or Sequelize's built-in migration feature. This ensures smooth updates and rollbacks.
+
+## Conclusion
+
+Thank you for reading! To further explore the code and concepts discussed in this guide, visit my GitHub repository:
+
+- [Tutorial Project Repository](https://github.com/rajeshedayangatt/nodejs-mysql-typescript-basic)
+
+With the basics covered, you are now ready to explore more complex node js topics. Happy coding!
+
+## Additional Resources
+
+For more examples and inspiration, check out the following links:
+
+- [Node.js Documentation](https://nodejs.org/docs/latest/api/)
+- [Mysql Documentation](https://dev.mysql.com/doc/)
+
+These resources will help you explore more advanced features and use cases for both frameworks.
+
+<hr />
+
+If you found this guide helpful and want to learn more about Node.js, Expressjs, or other web development topics, stay tuned for more tutorials on this blog!

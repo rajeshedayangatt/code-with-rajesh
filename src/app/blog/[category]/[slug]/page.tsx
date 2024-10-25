@@ -25,7 +25,7 @@ import AccordianDemo from "@/components/AccordianDemo";
 export default async function BlogPost({
   params,
 }: {
-  params: { slug: string };
+  params: { slug: string; category: string };
 }) {
   console.log("params", params);
   const processor = unified()
@@ -80,7 +80,12 @@ export default async function BlogPost({
   // }
 
   // console.log("slugname", slugname);
-  const filePath = path.join(process.cwd(), "content", slugname + ".mdx");
+  const filePath = path.join(
+    process.cwd(),
+    "content",
+    params.category,
+    slugname + ".mdx"
+  );
   // console.log("filePath", filePath);
 
   // const filePath = `content/${params.slug}.md`;
@@ -144,7 +149,7 @@ export default async function BlogPost({
 }
 
 type Props = {
-  params: { slug: string };
+  params: { slug: string; category: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
@@ -169,7 +174,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // }
 
   // console.log("slugname", slugname);
-  const filePath = path.join(process.cwd(), "content", slugname + ".mdx");
+  const filePath = path.join(
+    process.cwd(),
+    "content",
+    params.category,
+    slugname + ".mdx"
+  );
   // console.log("filePath", filePath);
 
   //const filePath = `content/${slugname}.mdx`;

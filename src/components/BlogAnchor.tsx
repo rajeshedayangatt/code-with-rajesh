@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 interface BlogT {
   title: string;
   slug: string;
+  url: string;
 }
 
 const BlogAnchor = ({
@@ -28,7 +29,7 @@ const BlogAnchor = ({
       onClick={() => {
         sendGAEvent("event", "buttonClicked", { value: blog.title });
         setTimeout(() => {
-          router.push(`blogpost/${blog.slug} `);
+          router.push(`${blog.url} `);
         }, 10);
       }}
     >

@@ -68,7 +68,7 @@ const BlogList = ({ params }: { params: { category: string } }) => {
                           <h2 className="text-2xl font-bold leading-8 tracking-tight">
                             <Link
                               className="text-gray-900 dark:text-gray-100"
-                              href={`blogpost/${blog.slug} `}
+                              href={`${blog.url} `}
                             >
                               {blog.title}
                             </Link>
