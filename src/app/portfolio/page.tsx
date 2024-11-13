@@ -97,19 +97,19 @@ export default function Page() {
                   </h3>
                   <ul className="flex space-x-4">
                     <li className="text-blue-600">React JS</li>
-                    {/* <li className="text-blue-600">Next JS</li> */}
+                    <li className="text-blue-600">Next JS</li>
                     <li className="text-blue-600">Node JS</li>
                     <li className="text-blue-600">Mysql</li>
                     <li className="text-blue-600">Redux</li>
                   </ul>
                 </div>
                 <div className="flex space-x-4">
-                  {/* <a
+                  <a
                     href="https://victors-ssr.thetunagroup.com/"
                     className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-500"
                   >
                     View SSR Website
-                  </a> */}
+                  </a>
                   <a
                     href="https://victors.thetunagroup.com/"
                     className="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white"
