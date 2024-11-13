@@ -80,7 +80,7 @@ export default function Page() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div>
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                  Victor's Home Solutions
+                  Victor&apos;s Home Solutions
                 </h2>
                 <p className="text-gray-600 mb-4">
                   Developed a dynamic, responsive front-end using React.js,
