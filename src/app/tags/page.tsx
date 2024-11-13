@@ -1,6 +1,12 @@
 import { tags } from "@/config/tags";
 import Link from "next/link";
+import type { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Tags CodeWithRajesh | Web Development Tutorials by Rajesh",
+  description:
+    "Tags. Learn how Rajesh, a seasoned web developer, shares his expertise in React, Node.js, Next.js, and Tailwind, helping developers enhance their skills with clear, practical tutorials.",
+};
 export default function Page() {
   return (
     <main className="mb-auto">

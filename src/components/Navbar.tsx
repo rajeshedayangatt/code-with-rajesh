@@ -132,6 +132,13 @@ const Navbar = () => {
           >
             About
           </Link>
+
+          <Link
+            className="hover:text-primary-500 dark:hover:text-primary-400 block font-medium text-gray-900 dark:text-gray-100"
+            href="/portfolio"
+          >
+            Portfolio
+          </Link>
         </div>
         {/* <button aria-label="Search">
           <svg
