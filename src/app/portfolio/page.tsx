@@ -23,7 +23,53 @@ export default function Page() {
             </p> */}
           </div>
 
+
           <div className="container mx-auto px-6 md:px-12 lg:px-24 py-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div className="order-2 md:order-1">
+                <img
+                  src="images/track.png"
+                  alt="Project Image"
+                  className="rounded-lg shadow-lg w-full"
+                />
+              </div>
+              <div className="order-1 md:order-2">
+                <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                  Job tracking Application
+                </h2>
+                <p className="text-gray-600 mb-4">
+                  Developed a fullstack web application for tracking job applications , Managing documents and Generating AI Resumes.
+
+                </p>
+                <div className="mb-4">
+                  <h3 className="font-semibold text-gray-700 mb-2">
+                    Technologies Used:
+                  </h3>
+                  <ul className="flex space-x-4">
+                    <li className="text-blue-600">React</li>
+                    <li className="text-blue-600">Node JS</li>
+                    <li className="text-blue-600">Redux</li>
+                    <li className="text-blue-600">Mysql</li>
+                    <li className="text-blue-600">TypeScript</li>
+
+                  </ul>
+                </div>
+                <div className="flex space-x-4">
+           
+                  <a
+                    href="https://indianjobtracker.xyz/"
+                    className="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white"
+                  >
+                    Visit Website
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div className="container mx-auto px-6 md:px-12 lg:px-24 py-8 bg-white">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div className="order-2 md:order-1">
                 <img
@@ -76,7 +122,7 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="container mx-auto px-6 md:px-12 lg:px-24 py-8 bg-white">
+          <div className="container mx-auto px-6 md:px-12 lg:px-24 py-8 ">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div>
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">
@@ -128,7 +174,7 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="container mx-auto px-6 md:px-12 lg:px-24 py-8">
+          <div className="container mx-auto px-6 md:px-12 lg:px-24 py-8 bg-white">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div className="order-2 md:order-1">
                 <img
